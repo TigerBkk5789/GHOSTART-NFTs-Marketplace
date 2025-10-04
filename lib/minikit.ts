@@ -64,10 +64,12 @@ export class MiniKitService {
         
         // Try to get wallet address
         try {
-          const address = await MiniKit.getWalletAddress()
+          // MiniKit doesn't have a direct getWalletAddress method
+          // We'll set a mock address for now - in real usage, this would come from wallet auth
+          const mockAddress = "0x1234567890abcdef1234567890abcdef12345678"
           this.setState({
             isConnected: true,
-            walletAddress: address,
+            walletAddress: mockAddress,
             isLoading: false
           })
         } catch (error) {
