@@ -9,18 +9,11 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { CheckCircle2, XCircle, Loader2, Shield, Smartphone, TrendingUp } from "lucide-react"
 import { MiniKit, type VerifyCommandInput, VerificationLevel, type ISuccessResult } from "@worldcoin/minikit-js"
-import type { Locale } from "@/lib/translations"
+import { getTranslations } from "@/lib/translations"
+import type { Locale } from "@/lib/i18n"
 import { useParams } from "next/navigation"
 import { Footer } from "@/components/footer"
 import { WalletConnect } from "@/components/wallet-connect"
-
-function isMiniKitAvailable(): boolean {
-  try {
-    return MiniKit.isInstalled()
-  } catch {
-    return false
-  }
-}
 
 export default function VerifyPage() {
   const params = useParams()
@@ -43,7 +36,15 @@ export default function VerifyPage() {
   } | null>(null)
 
   useEffect(() => {
-    setIsMiniKitInstalled(isMiniKitAvailable())
+    const checkMiniKit = async () => {
+      try {
+        const installed = await MiniKit.isInstalled()
+        setIsMiniKitInstalled(installed)
+      } catch (error) {
+        setIsMiniKitInstalled(false)
+      }
+    }
+    checkMiniKit()
   }, [])
 
   const handleVerify = async () => {
@@ -63,7 +64,7 @@ export default function VerifyPage() {
       return
     }
 
-    if (!isMiniKitAvailable()) {
+    if (!isMiniKitInstalled) {
       setResult({
         success: false,
         error: "MiniKit is not available. Please open this in World App.",
@@ -81,7 +82,7 @@ export default function VerifyPage() {
     }
 
     try {
-      const { finalPayload } = await MiniKit.verifyAsync(verifyPayload)
+      const { finalPayload } = await MiniKit.commandsAsync.verify(verifyPayload)
 
       if (finalPayload.status === "error") {
         setResult({
@@ -101,7 +102,6 @@ export default function VerifyPage() {
           payload: finalPayload as ISuccessResult,
           action: action,
           signal: signal || undefined,
-          walletAddress: walletAddress,
         }),
       })
 

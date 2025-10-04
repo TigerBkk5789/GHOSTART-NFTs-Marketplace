@@ -1,5 +1,5 @@
-import { type NextRequest, NextResponse } from "next/server"
-import { verifyCloudProof, type IVerifyResponse, type ISuccessResult } from "@worldcoin/minikit-js"
+import { NextRequest, NextResponse } from 'next/server'
+import { verifyCloudProof, type IVerifyResponse, type ISuccessResult } from '@worldcoin/minikit-js'
 
 interface IRequestPayload {
   payload: ISuccessResult
@@ -10,25 +10,13 @@ interface IRequestPayload {
 export async function POST(req: NextRequest) {
   try {
     const { payload, action, signal } = (await req.json()) as IRequestPayload
-
-    console.log("[v0] Verifying proof for action:", action)
-
-    const app_id = process.env.APP_ID as `app_${string}`
-
+    const app_id = process.env.NEXT_PUBLIC_APP_ID as `app_${string}`
+    
     if (!app_id) {
-      console.error("[v0] APP_ID environment variable is not set")
-      return NextResponse.json(
-        {
-          verifyRes: { success: false, detail: "Server configuration error: APP_ID not set" },
-          status: 500,
-        },
-        { status: 500 },
-      )
+      return NextResponse.json({ error: 'App ID not configured' }, { status: 500 })
     }
 
     const verifyRes = (await verifyCloudProof(payload, app_id, action, signal)) as IVerifyResponse
-
-    console.log("[v0] Verification result:", verifyRes)
 
     if (verifyRes.success) {
       // This is where you should perform backend actions if the verification succeeds
@@ -37,19 +25,13 @@ export async function POST(req: NextRequest) {
     } else {
       // This is where you should handle errors from the World ID /verify endpoint.
       // Usually these errors are due to a user having already verified.
-      return NextResponse.json({ verifyRes, status: 400 }, { status: 400 })
+      return NextResponse.json({ verifyRes, status: 400 })
     }
   } catch (error) {
-    console.error("[v0] Verification error:", error)
+    console.error('Verification error:', error)
     return NextResponse.json(
-      {
-        verifyRes: {
-          success: false,
-          detail: error instanceof Error ? error.message : "Verification failed",
-        },
-        status: 500,
-      },
-      { status: 500 },
+      { error: 'Internal server error' }, 
+      { status: 500 }
     )
   }
 }

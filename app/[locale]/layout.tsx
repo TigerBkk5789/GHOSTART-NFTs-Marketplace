@@ -8,7 +8,8 @@ import { Suspense } from "react"
 import { locales, type Locale } from "@/lib/i18n"
 import { LanguageSwitcher } from "@/components/language-switcher"
 import { MobileNav } from "@/components/mobile-nav"
-import { TradingBanner } from "@/components/trading-banner"
+import { WorldChainBanner } from "@/components/world-chain-banner"
+import { ConnectWalletButton } from "@/components/connect-wallet-button"
 
 const inter = Inter({
   subsets: ["latin"],
@@ -16,34 +17,37 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "GHOSTART",
+  title: "GHOSTART NFT Marketplace",
   description:
-    "Verify unique humans with privacy-preserving World ID technology. Bot-free experiences for your community.",
-  generator: "v0.app",
+    "GHOSTART NFT Marketplace on World Chain - Trade, mint, and claim NFTs with World ID verification. Built with MiniKit template.",
+  generator: "MiniKit Template",
 }
 
 export async function generateStaticParams() {
   return locales.map((locale) => ({ locale }))
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
   params,
 }: Readonly<{
   children: React.ReactNode
-  params: { locale: Locale }
+  params: Promise<{ locale: Locale }>
 }>) {
+  const { locale } = await params
+  
   return (
-    <html lang={params.locale}>
+    <html lang={locale}>
       <body className={`font-sans ${inter.variable}`}>
         <Suspense fallback={<div>Loading...</div>}>
           <MiniKitProvider>
-            <TradingBanner />
-            <div className="fixed top-4 right-4 z-50">
-              <LanguageSwitcher currentLocale={params.locale} />
+            <WorldChainBanner locale={locale} />
+            <div className="fixed top-4 right-4 z-50 flex items-center gap-2">
+              <ConnectWalletButton />
+              <LanguageSwitcher currentLocale={locale} />
             </div>
-            <div className="pt-16 pb-16 md:pb-0">{children}</div>
-            <MobileNav locale={params.locale} />
+            <div className="pt-20 pb-32 md:pb-0">{children}</div>
+            <MobileNav locale={locale} />
           </MiniKitProvider>
         </Suspense>
         <Analytics />

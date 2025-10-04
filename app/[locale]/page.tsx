@@ -3,34 +3,56 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { Badge } from "@/components/ui/badge"
-import { Smartphone, ArrowRight, TrendingUp, Lock, ExternalLink } from "lucide-react"
-import { getTranslations, type Locale } from "@/lib/translations"
+import { Smartphone, ArrowRight, TrendingUp, Lock, ExternalLink, Flame, Eye, Heart, Clock } from "lucide-react"
+import { getTranslations } from "@/lib/translations"
+import type { Locale } from "@/lib/i18n"
 import { QRCodeGenerator } from "@/components/qr-code-generator"
 import { Footer } from "@/components/footer"
+import { WorldChainBanner } from "@/components/world-chain-banner"
+import { TokenDisplay } from "@/components/token-display"
+import { formatLargeNumber, getCurrentPriceDisplay } from "@/lib/formatting"
+import { WorldStatusMonitor } from "@/components/world-status-monitor"
+import { TrendingNFTs } from "@/components/trending-nfts"
+import { NFTListings } from "@/components/nft-listings"
+import { ShareInvite } from "@/components/share-invite"
 import Image from "next/image"
 
-export default function HomePage({ params }: { params: { locale: Locale } }) {
-  const t = getTranslations(params.locale)
-  const appId = process.env.NEXT_PUBLIC_APP_ID || ""
+export default async function ExplorePage({ params }: { params: Promise<{ locale: Locale }> }) {
+  const { locale } = await params
+  const t = getTranslations(locale)
+  const appId = process.env.NEXT_PUBLIC_APP_ID || "app_cc2463e69dbce149c2073d4ca593af75"
   const pufLink =
-    "https://worldcoin.org/mini-app?app_id=app_15daccf5b7d4ec9b7dbba044a8fdeab5&path=app/token/0x4df029e25EA0043fCb7A7f15f2b25F62C9BDb990"
+    "https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75&path=app/token/0x4df029e25EA0043fCb7A7f15f2b25F62C9BDb990"
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-4 md:p-8">
-        <div className="w-full max-w-2xl space-y-6">
+        <div className="min-h-screen flex flex-col">
+          <div className="flex-1 bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-4 md:p-8">
+            <div className="w-full max-w-7xl mx-auto space-y-8">
+              {/* Enhanced Token Display */}
+              <TokenDisplay locale={locale} />
+              
+              {/* Trending NFTs Section */}
+              <TrendingNFTs locale={locale} />
+              
+              {/* NFT Listings Section */}
+              <NFTListings locale={locale} />
+
+              {/* Share Invite Section */}
+              <ShareInvite locale={locale} />
+              
+              <div className="w-full max-w-2xl mx-auto space-y-6">
           <Card className="border-2 border-primary">
             <CardHeader className="text-center space-y-3 pb-4">
               <div className="flex justify-center mb-2">
-                <div className="relative w-20 h-20 md:w-24 md:h-24">
-                  <Image
-                    src="/ghostart-cryptocurrency-coin-logo.jpg"
-                    alt="GHOSTART Token"
-                    width={96}
-                    height={96}
-                    className="rounded-full border-4 border-primary shadow-lg"
-                  />
-                </div>
+                  <div className="relative w-20 h-20 md:w-24 md:h-24">
+                    <Image
+                      src="/ghostart-token-new.png"
+                      alt="GHOSTART Token"
+                      width={96}
+                      height={96}
+                      className="rounded-full border-4 border-primary shadow-lg"
+                    />
+                  </div>
               </div>
               <div className="flex items-center justify-center gap-2">
                 <CardTitle className="text-3xl md:text-4xl font-bold text-balance">$GHOSTART</CardTitle>
@@ -38,14 +60,16 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
                   Early Trading
                 </Badge>
               </div>
-              <CardDescription className="text-base md:text-lg">{t.home.tokenSubtitle}</CardDescription>
+              <CardDescription className="text-base md:text-lg">
+                {t.home.tokenSubtitle} • {getCurrentPriceDisplay()}
+              </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <Alert className="border-green-500 bg-green-50 dark:bg-green-950">
                 <TrendingUp className="h-4 w-4 text-green-600 dark:text-green-400" />
                 <AlertTitle className="text-green-900 dark:text-green-100">{t.home.potentialTitle}</AlertTitle>
                 <AlertDescription className="text-green-800 dark:text-green-200">
-                  {t.home.potentialDesc}
+                  {t.home.potentialDesc} • Current: {getCurrentPriceDisplay()} • Target: $0.009+ (1000x)
                 </AlertDescription>
               </Alert>
 
@@ -105,13 +129,19 @@ export default function HomePage({ params }: { params: { locale: Locale } }) {
               </div>
 
               <Button asChild className="w-full bg-transparent" size="lg" variant="outline">
-                <Link href={`/${params.locale}/verify`} className="flex items-center justify-center gap-2">
+                <Link href={`/${locale}/verify`} className="flex items-center justify-center gap-2">
                   {t.home.button}
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </Button>
             </CardContent>
           </Card>
+
+          {/* World Services Status */}
+          <div className="w-full max-w-2xl mx-auto">
+            <WorldStatusMonitor />
+          </div>
+          </div>
         </div>
       </div>
       <Footer />

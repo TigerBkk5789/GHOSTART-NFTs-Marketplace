@@ -6,142 +6,176 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Wallet, CheckCircle2, Loader2, ExternalLink } from "lucide-react"
 import { MiniKit, type WalletAuthInput } from "@worldcoin/minikit-js"
-import { getTranslations, type Locale } from "@/lib/translations"
+import { getTranslations } from "@/lib/translations"
+import type { Locale } from "@/lib/i18n"
+import { MINIKIT_ERROR_CODES, MiniKitErrorHandler } from "@/lib/minikit-api"
 
 interface WalletConnectProps {
   locale: Locale
   onWalletConnected?: (address: string) => void
 }
 
-function isMiniKitAvailable(): boolean {
-  try {
-    return MiniKit.isInstalled()
-  } catch {
-    return false
-  }
-}
-
 export function WalletConnect({ locale, onWalletConnected }: WalletConnectProps) {
   const t = getTranslations(locale)
+  const [isInstalled, setIsInstalled] = useState(false)
+  const [isConnected, setIsConnected] = useState(false)
   const [walletAddress, setWalletAddress] = useState<string | null>(null)
-  const [loading, setLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [isMiniKit, setIsMiniKit] = useState(false)
 
   useEffect(() => {
-    setIsMiniKit(isMiniKitAvailable())
-  }, [])
+    const checkMiniKit = async () => {
+      try {
+        const installed = await MiniKit.isInstalled()
+        setIsInstalled(installed)
+        
+        if (installed) {
+          // Try to get existing wallet connection
+          try {
+            const address = await MiniKit.getWalletAddress()
+            if (address) {
+              setWalletAddress(address)
+              setIsConnected(true)
+              onWalletConnected?.(address)
+            }
+          } catch (error) {
+            // Wallet not connected yet
+          }
+        }
+      } catch (error) {
+        console.error('Error checking MiniKit:', error)
+      }
+    }
 
-  const connectWalletMiniKit = async () => {
-    if (!isMiniKitAvailable()) {
-      setError(t.wallet.worldAppRequired)
+    checkMiniKit()
+  }, [onWalletConnected])
+
+  const handleConnectWallet = async () => {
+    if (!isInstalled) {
+      setError("MiniKit not available. Please open this in World App.")
       return
     }
 
-    setLoading(true)
+    setIsLoading(true)
     setError(null)
 
     try {
+      // Get nonce from backend
+      const res = await fetch('/api/nonce')
+      const { nonce } = await res.json()
+
       const walletAuthInput: WalletAuthInput = {
-        nonce: crypto.randomUUID(),
-        expirationTime: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-        notBefore: new Date(),
-        statement: "Connect your World App wallet to GHOSTART for identity verification and token access",
+        nonce: nonce,
+        requestId: '0',
+        expirationTime: new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000),
+        notBefore: new Date(new Date().getTime() - 24 * 60 * 60 * 1000),
+        statement: "Connect your World App wallet to GHOSTART (1 GHOSTART = $0.000009 USDT) for identity verification and token access",
       }
 
-      const { finalPayload } = await MiniKit.walletAuth(walletAuthInput)
+          const { commandPayload: generateMessageResult, finalPayload } = await MiniKit.commandsAsync.walletAuth(walletAuthInput)
 
-      if (finalPayload.status === "error") {
-        setError("Wallet connection was cancelled or failed")
-        setLoading(false)
-        return
+          if (finalPayload.status === 'error') {
+            // Handle specific MiniKit error codes
+            const errorCode = finalPayload.error_code || 'generic_error'
+            const errorMessage = MiniKitErrorHandler.getErrorMessage(errorCode, 'walletAuth')
+            setError(errorMessage)
+            setIsLoading(false)
+            return
+          }
+
+      // Verify the authentication with backend
+      const response = await fetch('/api/complete-siwe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          payload: finalPayload,
+          nonce,
+        }),
+      })
+
+      const result = await response.json()
+      
+      if (result.status === 'success' && result.isValid) {
+        const address = finalPayload.address
+        setWalletAddress(address)
+        setIsConnected(true)
+        onWalletConnected?.(address)
+      } else {
+        setError("Authentication verification failed")
       }
-
-      const address = finalPayload.address
-      setWalletAddress(address)
-      onWalletConnected?.(address)
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Failed to connect wallet")
+      console.error("Wallet connection error:", err)
+      setError("Failed to connect wallet. Please try again.")
     } finally {
-      setLoading(false)
+      setIsLoading(false)
     }
   }
 
-  const connectWalletWeb = async () => {
-    setError("Web wallet connection coming soon. Please use World App for now.")
-  }
-
-  const handleConnect = () => {
-    if (isMiniKit) {
-      connectWalletMiniKit()
-    } else {
-      connectWalletWeb()
-    }
-  }
-
-  const disconnectWallet = () => {
-    setWalletAddress(null)
-    setError(null)
-    onWalletConnected?.(null as any)
-  }
-
-  if (walletAddress) {
+  if (!isInstalled) {
     return (
-      <Card className="border-green-500 bg-green-50 dark:bg-green-950">
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <CheckCircle2 className="h-5 w-5 text-green-600 dark:text-green-400" />
-              <CardTitle className="text-green-900 dark:text-green-100">{t.wallet.connected}</CardTitle>
-            </div>
-            <Button variant="outline" size="sm" onClick={disconnectWallet}>
-              {t.wallet.disconnect}
-            </Button>
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center">
+          <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+            <ExternalLink className="h-6 w-6 text-blue-600" />
           </div>
+          <CardTitle className="text-lg">{t.wallet.title}</CardTitle>
+          <CardDescription>
+            {t.wallet.worldAppRequired}
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <div className="space-y-3">
-            <div>
-              <p className="text-sm font-medium text-green-900 dark:text-green-100 mb-1">{t.wallet.address}:</p>
-              <p className="text-xs font-mono text-green-800 dark:text-green-200 break-all bg-green-100 dark:bg-green-900 p-2 rounded">
-                {walletAddress}
-              </p>
-            </div>
-            <Button asChild variant="outline" size="sm" className="w-full bg-transparent">
-              <a
-                href="https://worldcoin.org/mini-app?app_id=app_15daccf5b7d4ec9b7dbba044a8fdeab5&path=app/token/0x4df029e25EA0043fCb7A7f15f2b25F62C9BDb990"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2"
-              >
-                Trade $GHOSTART on PUF
-                <ExternalLink className="h-3 w-3" />
-              </a>
-            </Button>
-          </div>
+          <Alert>
+            <AlertDescription>
+              Please open this app in World App to connect your wallet.
+            </AlertDescription>
+          </Alert>
         </CardContent>
       </Card>
     )
   }
 
+  if (isConnected && walletAddress) {
+    return (
+      <Card className="w-full max-w-md">
+        <CardHeader className="text-center">
+          <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-green-100">
+            <CheckCircle2 className="h-6 w-6 text-green-600" />
+          </div>
+          <CardTitle className="text-lg">{t.wallet.connected}</CardTitle>
+          <CardDescription>
+            {t.wallet.address}: {walletAddress.slice(0, 6)}...{walletAddress.slice(-4)}
+          </CardDescription>
+        </CardHeader>
+      </Card>
+    )
+  }
+
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="flex items-center gap-2">
-          <Wallet className="h-5 w-5" />
-          {t.wallet.title}
-        </CardTitle>
-        <CardDescription>{t.wallet.description}</CardDescription>
+    <Card className="w-full max-w-md">
+      <CardHeader className="text-center">
+        <div className="mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+          <Wallet className="h-6 w-6 text-blue-600" />
+        </div>
+        <CardTitle className="text-lg">{t.wallet.title}</CardTitle>
+        <CardDescription>
+          {t.wallet.description}
+        </CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
         {error && (
-          <Alert variant="destructive">
+          <Alert className="bg-red-100 border-red-400 text-red-800">
             <AlertDescription>{error}</AlertDescription>
           </Alert>
         )}
-
-        <Button onClick={handleConnect} disabled={loading} className="w-full" size="lg">
-          {loading ? (
+        
+        <Button 
+          onClick={handleConnectWallet}
+          disabled={isLoading}
+          className="w-full"
+        >
+          {isLoading ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
               Connecting...
@@ -153,8 +187,6 @@ export function WalletConnect({ locale, onWalletConnected }: WalletConnectProps)
             </>
           )}
         </Button>
-
-        {isMiniKit && <p className="text-xs text-muted-foreground text-center">{t.wallet.worldAppRequired}</p>}
       </CardContent>
     </Card>
   )

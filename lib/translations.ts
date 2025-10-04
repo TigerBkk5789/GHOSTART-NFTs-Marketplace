@@ -63,6 +63,117 @@ type Translations = {
     builtWith: string
     support: string
   }
+  swap: {
+    title: string
+    description: string
+    liveTradingTitle: string
+    liveTradingDesc: string
+    instantSwapsTitle: string
+    instantSwapsDesc: string
+    secureTradingTitle: string
+    secureTradingDesc: string
+    swapTokens: string
+    from: string
+    to: string
+    rate: string
+    tradeOnPUF: string
+    tradingInfo: string
+    availablePairs: string
+    priceInfo: string
+    currentRate: string
+    volume24h: string
+    liquidity: string
+    tradeOnPUFTitle: string
+    tradeOnPUFDesc: string
+    backToHome: string
+    active: string
+  }
+  claim: {
+    title: string
+    description: string
+    freeNFTTitle: string
+    freeNFTDesc: string
+    freeMintingTitle: string
+    freeMintingDesc: string
+    onePerWalletTitle: string
+    onePerWalletDesc: string
+    earlyAccessTitle: string
+    earlyAccessDesc: string
+    claimNFT: string
+    connectWallet: string
+    verifyIdentity: string
+    claimFree: string
+    estimatedTime: string
+    agreeTerms: string
+    collectionInfo: string
+    collectionDetails: string
+    totalSupply: string
+    freeClaims: string
+    remaining: string
+    nftBenefits: string
+    earlyAccess: string
+    priorityDrops: string
+    communityAccess: string
+    joinDiscord: string
+    futureRewards: string
+    earnTokens: string
+    viewCollection: string
+    viewCollectionDesc: string
+    tradeTokens: string
+    backToHome: string
+    limitedTime: string
+  }
+  banner: {
+    title: string
+    description: string
+    tradeNow: string
+    target: string
+    potential: string
+    currentPrice: string
+  }
+  tip: {
+    title: string
+    description: string
+    sendTip: string
+    sendTipDescription: string
+    recipientAddress: string
+    amount: string
+    selectToken: string
+    send: string
+    sending: string
+    successMessage: string
+    viewTransaction: string
+    connectWalletError: string
+    invalidAmountError: string
+    transactionFailed: string
+  }
+  notifications: {
+    title: string
+    subtitle: string
+    enableTitle: string
+    enableDescription: string
+    enabled: string
+    enabledDescription: string
+    denied: string
+    deniedDescription: string
+    checkAgain: string
+    requesting: string
+    enable: string
+    benefit1: string
+    benefit2: string
+    benefit3: string
+    typesTitle: string
+    type1: string
+    type1Description: string
+    type2: string
+    type2Description: string
+    type3: string
+    type3Description: string
+    type4: string
+    type4Description: string
+    guidelinesTitle: string
+    guidelinesDescription: string
+  }
 }
 
 const translations: Record<Locale, Translations> = {
@@ -132,6 +243,117 @@ const translations: Record<Locale, Translations> = {
     footer: {
       builtWith: "Built with World ID MiniKit",
       support: "Support",
+    },
+    swap: {
+      title: "Token Swap",
+      description: "Swap between WLD and $GHOSTART tokens",
+      liveTradingTitle: "Live Trading Available",
+      liveTradingDesc: "Trade $GHOSTART tokens on the PUF marketplace with real-time pricing and liquidity.",
+      instantSwapsTitle: "Instant Swaps",
+      instantSwapsDesc: "Swap tokens instantly with competitive rates",
+      secureTradingTitle: "Secure Trading",
+      secureTradingDesc: "All swaps are secured by smart contracts",
+      swapTokens: "Swap Tokens",
+      from: "From",
+      to: "To",
+      rate: "Rate: 1 GHOSTART = $0.000009 USDT",
+      tradeOnPUF: "Trade on PUF Marketplace",
+      tradingInfo: "Trading Information",
+      availablePairs: "Available Pairs",
+      priceInfo: "Price Information",
+      currentRate: "Current Rate",
+      volume24h: "24h Volume",
+      liquidity: "Liquidity",
+      tradeOnPUFTitle: "Trade on PUF",
+      tradeOnPUFDesc: "For the best trading experience and real-time prices, use the PUF marketplace directly.",
+      backToHome: "Back to Home",
+      active: "Active",
+    },
+    claim: {
+      title: "Free NFT Claim",
+      description: "Claim your free GHOSTART NFT - No cost required!",
+      freeNFTTitle: "Free NFT Available",
+      freeNFTDesc: "Claim your exclusive GHOSTART NFT completely free! Limited to 1 NFT per wallet.",
+      freeMintingTitle: "100% Free Minting",
+      freeMintingDesc: "No gas fees, no payment required",
+      onePerWalletTitle: "One Per Wallet",
+      onePerWalletDesc: "Limited to prevent spam and ensure fairness",
+      earlyAccessTitle: "Early Access Benefits",
+      earlyAccessDesc: "Get priority access to future drops and features",
+      claimNFT: "Claim Your Free NFT",
+      connectWallet: "Connect your World App wallet",
+      verifyIdentity: "Verify your identity (one-time)",
+      claimFree: "Claim your free NFT",
+      estimatedTime: "Estimated time: 30 seconds",
+      agreeTerms: "By claiming, you agree to our terms and conditions",
+      collectionInfo: "NFT Collection Info",
+      collectionDetails: "Collection Details",
+      totalSupply: "Total Supply",
+      freeClaims: "Free Claims",
+      remaining: "Remaining",
+      nftBenefits: "NFT Benefits",
+      earlyAccess: "Early Access",
+      priorityDrops: "Priority for future drops",
+      communityAccess: "Community Access",
+      joinDiscord: "Join exclusive Discord",
+      futureRewards: "Future Rewards",
+      earnTokens: "Earn $GHOSTART tokens",
+      viewCollection: "View Collection",
+      viewCollectionDesc: "Check out the full GHOSTART NFT collection and see what other NFTs are available.",
+      tradeTokens: "Trade Tokens",
+      backToHome: "Back to Home",
+      limitedTime: "Limited Time",
+    },
+    banner: {
+      title: "Trade GHOSTART on PUF",
+      description: "Help reach 2000 WLD target to launch on all trading platforms!",
+      tradeNow: "Trade Now",
+      target: "2000 WLD Target",
+      potential: "Potential 100x-1000x returns from current price!",
+      currentPrice: "Current: $0.000009 USDT",
+    },
+    tip: {
+      title: "Send a Tip",
+      description: "Support the GHOSTART NFT marketplace by sending a tip",
+      sendTip: "Send Tip",
+      sendTipDescription: "Send WLD or GHOSTART tokens as a tip to support the marketplace",
+      recipientAddress: "Recipient Address",
+      amount: "Amount",
+      selectToken: "Select Token",
+      send: "Send Tip",
+      sending: "Sending...",
+      successMessage: "Tip sent successfully!",
+      viewTransaction: "View Transaction",
+      connectWalletError: "Please connect your wallet first",
+      invalidAmountError: "Please enter a valid amount",
+      transactionFailed: "Transaction failed. Please try again.",
+    },
+    notifications: {
+      title: "Notifications",
+      subtitle: "Stay updated with your NFT activities and marketplace events",
+      enableTitle: "Enable Notifications",
+      enableDescription: "Get notified about your NFT activities, sales, and marketplace updates",
+      enabled: "Notifications Enabled",
+      enabledDescription: "You'll receive notifications about your NFT activities",
+      denied: "Notifications Disabled",
+      deniedDescription: "You can enable notifications in your device settings",
+      checkAgain: "Check Again",
+      requesting: "Requesting...",
+      enable: "Enable Notifications",
+      benefit1: "Get notified when your NFTs are minted",
+      benefit2: "Receive alerts for sales and marketplace activity",
+      benefit3: "Stay updated with free NFT claims and rewards",
+      typesTitle: "Notification Types",
+      type1: "NFT Minted",
+      type1Description: "When your NFT is successfully minted",
+      type2: "Free NFT Claimed",
+      type2Description: "When you claim your free NFT",
+      type3: "NFT Listed",
+      type3Description: "When your NFT is listed for sale",
+      type4: "NFT Sold",
+      type4Description: "When your NFT is sold",
+      guidelinesTitle: "Notification Guidelines",
+      guidelinesDescription: "We follow World App guidelines: notifications are functional, relevant, and directly related to your NFT activities.",
     },
   },
   es: {
@@ -203,6 +425,57 @@ const translations: Record<Locale, Translations> = {
       builtWith: "Construido con World ID MiniKit",
       support: "Soporte",
     },
+    banner: {
+      title: "Negociar GHOSTART en PUF",
+      description: "¡Ayuda a alcanzar el objetivo de 2000 WLD para lanzar en todas las plataformas de trading!",
+      tradeNow: "Negociar Ahora",
+      target: "Objetivo 2000 WLD",
+      potential: "¡Potencial de retornos 100x-1000x desde el precio actual!",
+      currentPrice: "Actual: $0.000009 USDT",
+    },
+    tip: {
+      title: "Enviar Propina",
+      description: "Apoya el mercado de NFTs GHOSTART enviando una propina",
+      sendTip: "Enviar Propina",
+      sendTipDescription: "Envía tokens WLD o GHOSTART como propina para apoyar el mercado",
+      recipientAddress: "Dirección del Destinatario",
+      amount: "Cantidad",
+      selectToken: "Seleccionar Token",
+      send: "Enviar Propina",
+      sending: "Enviando...",
+      successMessage: "¡Propina enviada exitosamente!",
+      viewTransaction: "Ver Transacción",
+      connectWalletError: "Por favor conecta tu billetera primero",
+      invalidAmountError: "Por favor ingresa una cantidad válida",
+      transactionFailed: "La transacción falló. Por favor intenta de nuevo.",
+    },
+    notifications: {
+      title: "Notificaciones",
+      subtitle: "Mantente actualizado con tus actividades de NFT y eventos del mercado",
+      enableTitle: "Habilitar Notificaciones",
+      enableDescription: "Recibe notificaciones sobre tus actividades de NFT, ventas y actualizaciones del mercado",
+      enabled: "Notificaciones Habilitadas",
+      enabledDescription: "Recibirás notificaciones sobre tus actividades de NFT",
+      denied: "Notificaciones Deshabilitadas",
+      deniedDescription: "Puedes habilitar notificaciones en la configuración de tu dispositivo",
+      checkAgain: "Verificar de Nuevo",
+      requesting: "Solicitando...",
+      enable: "Habilitar Notificaciones",
+      benefit1: "Recibe notificaciones cuando tus NFTs sean acuñados",
+      benefit2: "Recibe alertas para ventas y actividad del mercado",
+      benefit3: "Mantente actualizado con reclamaciones de NFT gratis y recompensas",
+      typesTitle: "Tipos de Notificaciones",
+      type1: "NFT Acuñado",
+      type1Description: "Cuando tu NFT sea acuñado exitosamente",
+      type2: "NFT Gratis Reclamado",
+      type2Description: "Cuando reclames tu NFT gratis",
+      type3: "NFT Listado",
+      type3Description: "Cuando tu NFT sea listado para venta",
+      type4: "NFT Vendido",
+      type4Description: "Cuando tu NFT sea vendido",
+      guidelinesTitle: "Pautas de Notificaciones",
+      guidelinesDescription: "Seguimos las pautas de World App: las notificaciones son funcionales, relevantes y directamente relacionadas con tus actividades de NFT.",
+    },
   },
   th: {
     home: {
@@ -269,6 +542,57 @@ const translations: Record<Locale, Translations> = {
     footer: {
       builtWith: "สร้างด้วย World ID MiniKit",
       support: "ฝ่ายสนับสนุน",
+    },
+    banner: {
+      title: "เทรด GHOSTART บน PUF",
+      description: "ช่วยให้ถึงเป้าหมาย 2000 WLD เพื่อเปิดตัวในแพลตฟอร์มเทรดดิ้งทั้งหมด!",
+      tradeNow: "เทรดตอนนี้",
+      target: "เป้าหมาย 2000 WLD",
+      potential: "ศักยภาพผลตอบแทน 100x-1000x จากราคาปัจจุบัน!",
+      currentPrice: "ปัจจุบัน: $0.000009 USDT",
+    },
+    tip: {
+      title: "ส่งทิป",
+      description: "สนับสนุนตลาด NFT GHOSTART โดยการส่งทิป",
+      sendTip: "ส่งทิป",
+      sendTipDescription: "ส่งโทเค็น WLD หรือ GHOSTART เป็นทิปเพื่อสนับสนุนตลาด",
+      recipientAddress: "ที่อยู่ผู้รับ",
+      amount: "จำนวน",
+      selectToken: "เลือกโทเค็น",
+      send: "ส่งทิป",
+      sending: "กำลังส่ง...",
+      successMessage: "ส่งทิปสำเร็จ!",
+      viewTransaction: "ดูธุรกรรม",
+      connectWalletError: "กรุณาเชื่อมต่อกระเป๋าเงินก่อน",
+      invalidAmountError: "กรุณาใส่จำนวนที่ถูกต้อง",
+      transactionFailed: "ธุรกรรมล้มเหลว กรุณาลองใหม่",
+    },
+    notifications: {
+      title: "การแจ้งเตือน",
+      subtitle: "ติดตามกิจกรรม NFT และเหตุการณ์ในตลาดของคุณ",
+      enableTitle: "เปิดการแจ้งเตือน",
+      enableDescription: "รับการแจ้งเตือนเกี่ยวกับกิจกรรม NFT การขาย และการอัปเดตตลาดของคุณ",
+      enabled: "เปิดการแจ้งเตือนแล้ว",
+      enabledDescription: "คุณจะได้รับการแจ้งเตือนเกี่ยวกับกิจกรรม NFT ของคุณ",
+      denied: "ปิดการแจ้งเตือน",
+      deniedDescription: "คุณสามารถเปิดการแจ้งเตือนในการตั้งค่าอุปกรณ์ของคุณ",
+      checkAgain: "ตรวจสอบอีกครั้ง",
+      requesting: "กำลังขอ...",
+      enable: "เปิดการแจ้งเตือน",
+      benefit1: "รับการแจ้งเตือนเมื่อ NFT ของคุณถูกสร้าง",
+      benefit2: "รับการแจ้งเตือนสำหรับการขายและกิจกรรมในตลาด",
+      benefit3: "ติดตามการรับ NFT ฟรีและรางวัล",
+      typesTitle: "ประเภทการแจ้งเตือน",
+      type1: "NFT ถูกสร้าง",
+      type1Description: "เมื่อ NFT ของคุณถูกสร้างสำเร็จ",
+      type2: "รับ NFT ฟรี",
+      type2Description: "เมื่อคุณรับ NFT ฟรีของคุณ",
+      type3: "NFT ถูกวางขาย",
+      type3Description: "เมื่อ NFT ของคุณถูกวางขาย",
+      type4: "NFT ถูกขาย",
+      type4Description: "เมื่อ NFT ของคุณถูกขาย",
+      guidelinesTitle: "แนวทางการแจ้งเตือน",
+      guidelinesDescription: "เราปฏิบัติตามแนวทางของ World App: การแจ้งเตือนเป็นฟังก์ชัน มีความเกี่ยวข้อง และเกี่ยวข้องโดยตรงกับกิจกรรม NFT ของคุณ",
     },
   },
   ja: {
@@ -339,6 +663,57 @@ const translations: Record<Locale, Translations> = {
       builtWith: "World ID MiniKit で構築",
       support: "サポート",
     },
+    banner: {
+      title: "PUFでGHOSTARTを取引",
+      description: "すべての取引プラットフォームでローンチするために2000 WLD目標の達成を支援！",
+      tradeNow: "今すぐ取引",
+      target: "2000 WLD目標",
+      potential: "現在の価格から100倍〜1000倍のリターンの可能性！",
+      currentPrice: "現在: $0.000009 USDT",
+    },
+    tip: {
+      title: "チップを送る",
+      description: "チップを送ってGHOSTART NFTマーケットプレイスをサポート",
+      sendTip: "チップを送る",
+      sendTipDescription: "マーケットプレイスをサポートするためにWLDまたはGHOSTARTトークンをチップとして送信",
+      recipientAddress: "受信者アドレス",
+      amount: "金額",
+      selectToken: "トークンを選択",
+      send: "チップを送る",
+      sending: "送信中...",
+      successMessage: "チップが正常に送信されました！",
+      viewTransaction: "トランザクションを表示",
+      connectWalletError: "まずウォレットを接続してください",
+      invalidAmountError: "有効な金額を入力してください",
+      transactionFailed: "トランザクションが失敗しました。再試行してください。",
+    },
+    notifications: {
+      title: "通知",
+      subtitle: "NFTアクティビティとマーケットプレイスイベントの最新情報を取得",
+      enableTitle: "通知を有効にする",
+      enableDescription: "NFTアクティビティ、売却、マーケットプレイスの更新について通知を受け取る",
+      enabled: "通知が有効",
+      enabledDescription: "NFTアクティビティについて通知を受け取ります",
+      denied: "通知が無効",
+      deniedDescription: "デバイス設定で通知を有効にできます",
+      checkAgain: "再確認",
+      requesting: "リクエスト中...",
+      enable: "通知を有効にする",
+      benefit1: "NFTがミントされたときに通知を受け取る",
+      benefit2: "売却とマーケットプレイスアクティビティのアラートを受け取る",
+      benefit3: "無料NFTクレームと報酬の最新情報を取得",
+      typesTitle: "通知タイプ",
+      type1: "NFTミント済み",
+      type1Description: "NFTが正常にミントされたとき",
+      type2: "無料NFTクレーム済み",
+      type2Description: "無料NFTをクレームしたとき",
+      type3: "NFT出品済み",
+      type3Description: "NFTが売却用に出品されたとき",
+      type4: "NFT売却済み",
+      type4Description: "NFTが売却されたとき",
+      guidelinesTitle: "通知ガイドライン",
+      guidelinesDescription: "World Appガイドラインに従います：通知は機能的で、関連性があり、NFTアクティビティに直接関連しています。",
+    },
   },
   ko: {
     home: {
@@ -405,6 +780,57 @@ const translations: Record<Locale, Translations> = {
     footer: {
       builtWith: "World ID MiniKit로 제작",
       support: "지원",
+    },
+    banner: {
+      title: "PUF에서 GHOSTART 거래",
+      description: "모든 거래 플랫폼에서 출시하기 위해 2000 WLD 목표 달성을 도와주세요!",
+      tradeNow: "지금 거래",
+      target: "2000 WLD 목표",
+      potential: "현재 가격에서 100배-1000배 수익 잠재력!",
+      currentPrice: "현재: $0.000009 USDT",
+    },
+    tip: {
+      title: "팁 보내기",
+      description: "팁을 보내서 GHOSTART NFT 마켓플레이스를 지원하세요",
+      sendTip: "팁 보내기",
+      sendTipDescription: "마켓플레이스를 지원하기 위해 WLD 또는 GHOSTART 토큰을 팁으로 보내세요",
+      recipientAddress: "수신자 주소",
+      amount: "금액",
+      selectToken: "토큰 선택",
+      send: "팁 보내기",
+      sending: "전송 중...",
+      successMessage: "팁이 성공적으로 전송되었습니다!",
+      viewTransaction: "거래 보기",
+      connectWalletError: "먼저 지갑을 연결해주세요",
+      invalidAmountError: "유효한 금액을 입력해주세요",
+      transactionFailed: "거래가 실패했습니다. 다시 시도해주세요.",
+    },
+    notifications: {
+      title: "알림",
+      subtitle: "NFT 활동 및 마켓플레이스 이벤트의 최신 정보를 받아보세요",
+      enableTitle: "알림 활성화",
+      enableDescription: "NFT 활동, 판매, 마켓플레이스 업데이트에 대한 알림을 받으세요",
+      enabled: "알림 활성화됨",
+      enabledDescription: "NFT 활동에 대한 알림을 받게 됩니다",
+      denied: "알림 비활성화됨",
+      deniedDescription: "기기 설정에서 알림을 활성화할 수 있습니다",
+      checkAgain: "다시 확인",
+      requesting: "요청 중...",
+      enable: "알림 활성화",
+      benefit1: "NFT가 민팅될 때 알림을 받으세요",
+      benefit2: "판매 및 마켓플레이스 활동에 대한 알림을 받으세요",
+      benefit3: "무료 NFT 클레임 및 보상의 최신 정보를 받으세요",
+      typesTitle: "알림 유형",
+      type1: "NFT 민팅됨",
+      type1Description: "NFT가 성공적으로 민팅될 때",
+      type2: "무료 NFT 클레임됨",
+      type2Description: "무료 NFT를 클레임할 때",
+      type3: "NFT 등록됨",
+      type3Description: "NFT가 판매용으로 등록될 때",
+      type4: "NFT 판매됨",
+      type4Description: "NFT가 판매될 때",
+      guidelinesTitle: "알림 가이드라인",
+      guidelinesDescription: "World App 가이드라인을 따릅니다: 알림은 기능적이고, 관련성이 있으며, NFT 활동과 직접적으로 관련이 있습니다.",
     },
   },
   pt: {
@@ -474,6 +900,57 @@ const translations: Record<Locale, Translations> = {
     footer: {
       builtWith: "Construído com World ID MiniKit",
       support: "Suporte",
+    },
+    banner: {
+      title: "Negociar GHOSTART no PUF",
+      description: "Ajude a atingir o objetivo de 2000 WLD para lançar em todas as plataformas de trading!",
+      tradeNow: "Negociar Agora",
+      target: "Objetivo 2000 WLD",
+      potential: "Potencial de retornos 100x-1000x do preço atual!",
+      currentPrice: "Atual: $0.000009 USDT",
+    },
+    tip: {
+      title: "Enviar Gorjeta",
+      description: "Apoie o mercado de NFTs GHOSTART enviando uma gorjeta",
+      sendTip: "Enviar Gorjeta",
+      sendTipDescription: "Envie tokens WLD ou GHOSTART como gorjeta para apoiar o mercado",
+      recipientAddress: "Endereço do Destinatário",
+      amount: "Quantia",
+      selectToken: "Selecionar Token",
+      send: "Enviar Gorjeta",
+      sending: "Enviando...",
+      successMessage: "Gorjeta enviada com sucesso!",
+      viewTransaction: "Ver Transação",
+      connectWalletError: "Por favor conecte sua carteira primeiro",
+      invalidAmountError: "Por favor insira uma quantia válida",
+      transactionFailed: "A transação falhou. Por favor tente novamente.",
+    },
+    notifications: {
+      title: "Notificações",
+      subtitle: "Mantenha-se atualizado com suas atividades de NFT e eventos do mercado",
+      enableTitle: "Habilitar Notificações",
+      enableDescription: "Receba notificações sobre suas atividades de NFT, vendas e atualizações do mercado",
+      enabled: "Notificações Habilitadas",
+      enabledDescription: "Você receberá notificações sobre suas atividades de NFT",
+      denied: "Notificações Desabilitadas",
+      deniedDescription: "Você pode habilitar notificações nas configurações do seu dispositivo",
+      checkAgain: "Verificar Novamente",
+      requesting: "Solicitando...",
+      enable: "Habilitar Notificações",
+      benefit1: "Receba notificações quando seus NFTs forem cunhados",
+      benefit2: "Receba alertas para vendas e atividade do mercado",
+      benefit3: "Mantenha-se atualizado com reivindicações de NFT gratuitos e recompensas",
+      typesTitle: "Tipos de Notificações",
+      type1: "NFT Cunhado",
+      type1Description: "Quando seu NFT for cunhado com sucesso",
+      type2: "NFT Gratuito Reivindicado",
+      type2Description: "Quando você reivindicar seu NFT gratuito",
+      type3: "NFT Listado",
+      type3Description: "Quando seu NFT for listado para venda",
+      type4: "NFT Vendido",
+      type4Description: "Quando seu NFT for vendido",
+      guidelinesTitle: "Diretrizes de Notificações",
+      guidelinesDescription: "Seguimos as diretrizes do World App: as notificações são funcionais, relevantes e diretamente relacionadas às suas atividades de NFT.",
     },
   },
 }
