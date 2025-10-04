@@ -110,7 +110,7 @@ export function NotificationPermission({ locale }: NotificationPermissionProps) 
         </CardHeader>
         <CardContent>
           <Button 
-            onClick={checkPermissions} 
+            onClick={checkMiniKit} 
             variant="outline" 
             className="w-full"
           >
