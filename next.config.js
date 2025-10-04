@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Remove static export for development
-  // output: 'export',
+  // Enable static export for Netlify
+  output: 'export',
   trailingSlash: true,
   images: {
     unoptimized: true
