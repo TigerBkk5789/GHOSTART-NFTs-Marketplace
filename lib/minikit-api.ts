@@ -106,7 +106,7 @@ export class MiniKitErrorHandler {
       }
     }
 
-    return errorMessages[command][errorCode] || 'An unexpected error occurred. Please try again.'
+    return (errorMessages[command] as any)[errorCode] || 'An unexpected error occurred. Please try again.'
   }
 
   static isRetryableError(errorCode: string, command: 'verify' | 'pay' | 'walletAuth' | 'transaction'): boolean {
