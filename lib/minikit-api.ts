@@ -134,7 +134,7 @@ export class MiniKitErrorHandler {
       ]
     }
 
-    return retryableErrors[command].includes(errorCode)
+    return (retryableErrors[command] as any).includes(errorCode)
   }
 
   static shouldShowUserMessage(errorCode: string, command: 'verify' | 'pay' | 'walletAuth' | 'transaction'): boolean {
@@ -161,7 +161,7 @@ export class MiniKitErrorHandler {
       ]
     }
 
-    return userVisibleErrors[command].includes(errorCode)
+    return (userVisibleErrors[command] as any).includes(errorCode)
   }
 }
 
