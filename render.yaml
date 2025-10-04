@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: ghostart-nft-marketplace
+    env: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NEXT_PUBLIC_APP_ID
+        value: app_staging_1234567890abcdef
+      - key: NEXT_PUBLIC_MINI_APP_API_KEY
+        value: your_api_key_here
+      - key: NEXT_PUBLIC_WALLET_ADDRESS
+        value: 0x1234567890abcdef1234567890abcdef12345678
+      - key: NEXT_PUBLIC_GHOSTART_TOKEN_ADDRESS
+        value: 0x1234567890abcdef1234567890abcdef12345678
+      - key: NEXT_PUBLIC_GHOSTART_PRICE_USDT
+        value: 0.000009
+      - key: NEXT_PUBLIC_PUF_TRADING_LINK
+        value: https://puf.exchange/trade/ghostart
