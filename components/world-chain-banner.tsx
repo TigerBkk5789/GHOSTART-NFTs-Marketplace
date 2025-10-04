@@ -4,7 +4,8 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { X, ExternalLink, Zap, Globe, Smartphone, Monitor } from "lucide-react"
-import { getTranslations, type Locale } from "@/lib/translations"
+import { getTranslations } from "@/lib/translations"
+import type { Locale } from "@/lib/i18n"
 
 interface WorldChainBannerProps {
   locale: Locale
