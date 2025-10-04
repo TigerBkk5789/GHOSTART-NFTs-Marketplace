@@ -13,7 +13,8 @@ interface IRequestPayload {
 export async function POST(req: NextRequest) {
   const { payload, nonce } = (await req.json()) as IRequestPayload
   
-  if (nonce != cookies().get("siwe")?.value) {
+  const cookieStore = await cookies()
+  if (nonce != cookieStore.get("siwe")?.value) {
     return NextResponse.json({
       status: "error",
       isValid: false,
