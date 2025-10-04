@@ -1014,7 +1014,7 @@ export class UserManager {
   ) {
     try {
       const userInfo = await this.getUserInfo(walletAddress)
-      const notification = GHOSTART_NOTIFICATIONS[notificationType](userInfo.username)
+      const notification = GHOSTART_NOTIFICATIONS[notificationType](userInfo.username, '', '')
       
       // Add custom data if provided
       if (customData) {
