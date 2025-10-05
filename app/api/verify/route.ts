@@ -1,37 +1,40 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { verifyCloudProof, type IVerifyResponse, type ISuccessResult } from '@worldcoin/minikit-js'
-
-interface IRequestPayload {
-  payload: ISuccessResult
-  action: string
-  signal: string | undefined
-}
+import { NextRequest, NextResponse } from 'next/server';
 
 export async function POST(req: NextRequest) {
   try {
-    const { payload, action, signal } = (await req.json()) as IRequestPayload
-    const app_id = process.env.NEXT_PUBLIC_APP_ID as `app_${string}`
-    
-    if (!app_id) {
-      return NextResponse.json({ error: 'App ID not configured' }, { status: 500 })
-    }
+    const body = await req.json();
+    const { proof, action, signal } = body;
 
-    const verifyRes = (await verifyCloudProof(payload, app_id, action, signal)) as IVerifyResponse
+    const response = await fetch(
+      `https://developer.worldcoin.org/api/v2/verify/${process.env.NEXT_PUBLIC_APP_ID}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          nullifier_hash: proof.nullifier_hash,
+          merkle_root: proof.merkle_root,
+          proof: proof.proof,
+          verification_level: proof.verification_level,
+          action: action || process.env.NEXT_PUBLIC_ACTION,
+          signal: signal || '',
+        }),
+      }
+    );
 
-    if (verifyRes.success) {
-      // This is where you should perform backend actions if the verification succeeds
-      // Such as, setting a user as "verified" in a database
-      return NextResponse.json({ verifyRes, status: 200 })
+    const data = await response.json();
+
+    if (response.ok) {
+      return NextResponse.json({ success: true, data });
     } else {
-      // This is where you should handle errors from the World ID /verify endpoint.
-      // Usually these errors are due to a user having already verified.
-      return NextResponse.json({ verifyRes, status: 400 })
+      return NextResponse.json({ success: false, error: data }, { status: 400 });
     }
   } catch (error) {
-    console.error('Verification error:', error)
+    console.error('Verification error:', error);
     return NextResponse.json(
-      { error: 'Internal server error' }, 
+      { success: false, error: 'Verification failed' },
       { status: 500 }
-    )
+    );
   }
 }
