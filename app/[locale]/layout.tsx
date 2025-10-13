@@ -7,7 +7,7 @@ import { MiniKitProvider } from "@/components/minikit-provider"
 import { Suspense } from "react"
 import { locales, type Locale } from "@/lib/i18n"
 import { LanguageSwitcher } from "@/components/language-switcher"
-import { MobileNav } from "@/components/mobile-nav"
+import { MobileNavigation } from "@/components/mobile-navigation"
 import { WorldChainBanner } from "@/components/world-chain-banner"
 import { ConnectWalletButton } from "@/components/connect-wallet-button"
 
@@ -47,7 +47,7 @@ export default async function RootLayout({
               <LanguageSwitcher currentLocale={locale} />
             </div>
             <div className="pt-20 pb-32 md:pb-0">{children}</div>
-            <MobileNav locale={locale} />
+            <MobileNavigation locale={locale} />
           </MiniKitProvider>
         </Suspense>
         <Analytics />

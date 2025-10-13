@@ -17,9 +17,8 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
   const pufLink = "https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75&path=app/token/0x4df029e25EA0043fCb7A7f15f2b25F62C9BDb990"
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <div className="flex-1 flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 p-4 md:p-8">
-        <div className="w-full max-w-2xl space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900">
+      <div className="p-4 space-y-6">
           {/* Hero Section */}
           <Card className="border-2 border-primary shadow-2xl">
             <CardHeader className="text-center space-y-4 pb-6">
@@ -146,9 +145,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               </Button>
             </CardContent>
           </Card>
-        </div>
       </div>
-      <Footer />
     </div>
   )
 }
