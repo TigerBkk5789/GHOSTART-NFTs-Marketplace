@@ -1,10 +1,10 @@
-import { http, createConfig } from 'wagmi';
+import { createConfig } from 'wagmi';
 import { worldchain } from 'wagmi/chains';
 
 export const config = createConfig({
-  chains: [worldchain],
-  transports: {
-    [worldchain.id]: http(process.env.NEXT_PUBLIC_WORLD_CHAIN_RPC),
+  publicClient: () => {
+    // Mock public client for now
+    return {} as any;
   },
 });
 
