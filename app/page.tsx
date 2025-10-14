@@ -286,10 +286,10 @@ export default function HomePage() {
             </a>
             
             <a
-              href="/marketplace"
+              href="/collection"
               className="group bg-blue-50 backdrop-blur-sm border-2 border-blue-200 px-10 py-5 rounded-xl font-bold text-xl hover:bg-blue-100 transition-all flex items-center justify-center space-x-3 transform hover:scale-105 text-gray-900"
             >
-              <span>{t.exploreMarketplace}</span>
+              <span>Explore Collection</span>
               <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
             </a>
           </div>
@@ -432,8 +432,12 @@ export default function HomePage() {
             NFT Marketplace on World Chain
           </p>
           <div className="flex justify-center space-x-8 text-sm text-blue-200">
-            <a href="/marketplace" className="hover:text-white transition-colors flex items-center space-x-2">
-              <span>Marketplace</span>
+            <a href="/collection" className="hover:text-white transition-colors flex items-center space-x-2">
+              <span>Collection</span>
+              <ArrowRight size={16} />
+            </a>
+            <a href="/wallet" className="hover:text-white transition-colors flex items-center space-x-2">
+              <span>Wallet</span>
               <ArrowRight size={16} />
             </a>
             <a href="https://worldscan.org/token/0x4df029e25EA0043fCBfb7A7f15f2b25F62C9BDb990" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center space-x-2">
