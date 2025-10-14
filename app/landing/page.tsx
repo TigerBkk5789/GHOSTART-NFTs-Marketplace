@@ -5,7 +5,7 @@ import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { Wallet, TrendingUp, Zap, Shield, Globe, ExternalLink, X, Menu, ChevronRight, Star, ArrowRight, Sparkles, Flame, Coins, Users, BarChart3 } from 'lucide-react';
 import Image from 'next/image';
 
-export default function HomePage() {
+export default function LandingPage() {
   const { address, isConnected } = useAccount();
   const { connect, connectors } = useConnect();
   const { disconnect } = useDisconnect();
