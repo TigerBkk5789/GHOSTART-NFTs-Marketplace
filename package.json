@@ -18,14 +18,14 @@
     "@worldcoin/minikit-js": "^1.9.7",
     "class-variance-authority": "^0.7.1",
     "lucide-react": "^0.428.0",
-    "next": "^14.2.33",
+    "next": "14.2.5",
     "next-themes": "^0.4.6",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
     "sharp": "^0.33.4",
     "tailwind-merge": "^3.3.1",
     "viem": "^2.19.0",
-    "wagmi": "^1.4.13"
+    "wagmi": "^2.12.0"
   },
   "devDependencies": {
     "@types/node": "^20",
