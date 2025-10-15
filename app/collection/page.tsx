@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useAccount } from 'wagmi';
+import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { 
   Grid3X3,
   List,
@@ -26,12 +26,17 @@ import {
   ChevronDown,
   ChevronRight,
   Plus,
-  RefreshCw
+  RefreshCw,
+  Wallet,
+  Copy,
+  X
 } from 'lucide-react';
 import Image from 'next/image';
 
 export default function CollectionPage() {
   const { address, isConnected } = useAccount();
+  const { connect, connectors } = useConnect();
+  const { disconnect } = useDisconnect();
   
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
   const [sortBy, setSortBy] = useState('recent');
@@ -39,6 +44,9 @@ export default function CollectionPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [nfts, setNfts] = useState<any[]>([]);
   const [filteredNFTs, setFilteredNFTs] = useState<any[]>([]);
+  const [showWalletModal, setShowWalletModal] = useState(false);
+  const [showMintModal, setShowMintModal] = useState(false);
+  const [minting, setMinting] = useState(false);
   const [collectionStats, setCollectionStats] = useState({
     totalSupply: 10000,
     floorPrice: 0.1,
@@ -105,6 +113,35 @@ export default function CollectionPage() {
       return `${(num / 1000).toFixed(1)}K`;
     }
     return num.toString();
+  };
+
+  const handleMint = async () => {
+    if (!isConnected) {
+      setShowWalletModal(true);
+      return;
+    }
+    
+    setMinting(true);
+    try {
+      const response = await fetch('/api/mint', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ address })
+      });
+      const result = await response.json();
+      
+      if (result.success) {
+        setShowMintModal(false);
+        // Refresh NFTs
+        fetchNFTs();
+        alert('NFT minted successfully!');
+      }
+    } catch (error) {
+      console.error('Mint error:', error);
+      alert('Mint failed. Please try again.');
+    } finally {
+      setMinting(false);
+    }
   };
 
   return (
@@ -210,6 +247,27 @@ export default function CollectionPage() {
               <p className="text-2xl font-bold text-green-600">+{collectionStats.floorChange}%</p>
               <p className="text-sm text-gray-600">Floor Change</p>
             </div>
+          </div>
+        </div>
+
+        {/* Free Mint Banner */}
+        <div className="bg-gradient-to-r from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-6 mb-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
+                <Zap className="text-white" size={24} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-gray-900">Free NFT Minting Available!</h3>
+                <p className="text-gray-600">Mint your first GHOSTART NFT completely free on World Chain</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowMintModal(true)}
+              className="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-8 py-3 rounded-xl font-bold hover:from-green-600 hover:to-emerald-600 transition-all shadow-lg"
+            >
+              Mint Free NFT
+            </button>
           </div>
         </div>
 
@@ -357,6 +415,72 @@ export default function CollectionPage() {
             <button className="bg-white border border-blue-200 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold text-gray-900 transition-all">
               Load More NFTs
             </button>
+          </div>
+        )}
+
+        {/* Wallet Connection Modal */}
+        {showWalletModal && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-3xl max-w-md w-full p-8">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Connect Wallet</h2>
+                <button onClick={() => setShowWalletModal(false)} className="p-2 hover:bg-gray-100 rounded-lg">
+                  <X size={24} className="text-gray-600" />
+                </button>
+              </div>
+              <div className="space-y-4">
+                {connectors.map((connector) => (
+                  <button
+                    key={connector.id}
+                    onClick={() => {
+                      connect({ connector });
+                      setShowWalletModal(false);
+                    }}
+                    className="w-full flex items-center justify-between p-4 bg-gray-50 hover:bg-gray-100 rounded-xl transition-colors"
+                  >
+                    <span className="font-semibold">{connector.name}</span>
+                    <ChevronRight size={20} className="text-gray-600" />
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Mint Modal */}
+        {showMintModal && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+            <div className="bg-white rounded-3xl max-w-md w-full p-8">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">Mint Free NFT</h2>
+                <button onClick={() => setShowMintModal(false)} className="p-2 hover:bg-gray-100 rounded-lg">
+                  <X size={24} className="text-gray-600" />
+                </button>
+              </div>
+              <div className="text-center mb-6">
+                <div className="w-20 h-20 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Zap className="text-white" size={40} />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">Mint Your GHOSTART NFT</h3>
+                <p className="text-gray-600">Get your first NFT completely free on World Chain</p>
+              </div>
+              <div className="space-y-4">
+                <div className="bg-green-50 border border-green-200 rounded-lg p-4">
+                  <div className="flex items-center space-x-2 mb-2">
+                    <Shield className="text-green-600" size={20} />
+                    <span className="font-semibold text-green-800">100% Free</span>
+                  </div>
+                  <p className="text-sm text-green-700">No gas fees, no payment required</p>
+                </div>
+                <button
+                  onClick={handleMint}
+                  disabled={minting}
+                  className="w-full bg-gradient-to-r from-green-500 to-emerald-500 text-white py-4 px-6 rounded-xl font-bold text-lg hover:from-green-600 hover:to-emerald-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {minting ? 'Minting...' : 'Mint Free NFT'}
+                </button>
+              </div>
+            </div>
           </div>
         )}
       </div>
