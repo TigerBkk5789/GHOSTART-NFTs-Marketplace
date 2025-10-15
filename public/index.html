@@ -66,7 +66,7 @@
                         <option value="pt">🇧🇷 Português</option>
                     </select>
 
-                    <button class="bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-3 rounded-lg font-bold hover:from-blue-600 hover:to-indigo-600 transition-all flex items-center space-x-2 shadow-lg shadow-blue-500/50 text-white">
+                    <button id="connectWalletBtn" class="bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3 rounded-lg font-bold hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center space-x-2 shadow-lg shadow-blue-500/50 text-white">
                         <i data-lucide="wallet" class="w-5 h-5"></i>
                         <span>Connect Wallet</span>
                     </button>
@@ -325,6 +325,217 @@
                     this.style.transform = 'scale(1)';
                 });
             });
+
+            // Wallet Connection Functionality
+            const connectWalletBtn = document.getElementById('connectWalletBtn');
+            let isConnected = false;
+
+            connectWalletBtn.addEventListener('click', function() {
+                if (!isConnected) {
+                    // Simulate wallet connection
+                    showWalletModal();
+                } else {
+                    // Disconnect wallet
+                    disconnectWallet();
+                }
+            });
+
+            function showWalletModal() {
+                // Create modal
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4';
+                modal.innerHTML = `
+                    <div class="bg-black/90 backdrop-blur-md rounded-3xl max-w-md w-full p-8 border border-blue-500">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-white">Connect Wallet</h2>
+                            <button id="closeModal" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                                <i data-lucide="x" class="w-6 h-6 text-gray-300"></i>
+                            </button>
+                        </div>
+                        <div class="space-y-4">
+                            <button class="w-full flex items-center justify-between p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl transition-colors border border-gray-600" onclick="connectWithWallet('worldapp')">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                                        <span class="text-white font-bold">🌍</span>
+                                    </div>
+                                    <div class="text-left">
+                                        <p class="font-semibold text-white">World App</p>
+                                        <p class="text-sm text-gray-400">Connect with World ID</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                            </button>
+                            <button class="w-full flex items-center justify-between p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl transition-colors border border-gray-600" onclick="connectWithWallet('metamask')">
+                                <div class="flex items-center space-x-3">
+                                    <div class="w-10 h-10 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full flex items-center justify-center">
+                                        <span class="text-white font-bold">🦊</span>
+                                    </div>
+                                    <div class="text-left">
+                                        <p class="font-semibold text-white">MetaMask</p>
+                                        <p class="text-sm text-gray-400">Connect with MetaMask</p>
+                                    </div>
+                                </div>
+                                <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.appendChild(modal);
+                lucide.createIcons();
+
+                // Close modal functionality
+                document.getElementById('closeModal').addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                });
+
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        document.body.removeChild(modal);
+                    }
+                });
+            }
+
+            function connectWithWallet(walletType) {
+                // Real World Chain integration
+                if (walletType === 'worldapp') {
+                    // Connect with World App
+                    connectWorldApp();
+                } else {
+                    // Connect with MetaMask
+                    connectMetaMask();
+                }
+            }
+
+            async function connectWorldApp() {
+                try {
+                    // Check if World App is available
+                    if (typeof window.WorldApp !== 'undefined') {
+                        // Use World App SDK
+                        const result = await window.WorldApp.connect();
+                        if (result.success) {
+                            isConnected = true;
+                            updateWalletUI(result.address);
+                            showNotification('Connected to World App successfully!', 'success');
+                            
+                            // Send notification about successful connection
+                            await sendWorldAppNotification('Welcome to GHOSTART!', 'You are now connected to the GHOSTART NFT Marketplace on World Chain.');
+                        }
+                    } else {
+                        // Fallback to World Mini App
+                        window.location.href = 'https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75';
+                    }
+                } catch (error) {
+                    console.error('World App connection failed:', error);
+                    showNotification('Failed to connect to World App', 'error');
+                }
+            }
+
+            async function connectMetaMask() {
+                try {
+                    if (typeof window.ethereum !== 'undefined') {
+                        const accounts = await window.ethereum.request({
+                            method: 'eth_requestAccounts'
+                        });
+                        
+                        if (accounts.length > 0) {
+                            isConnected = true;
+                            updateWalletUI(accounts[0]);
+                            showNotification('Connected to MetaMask successfully!', 'success');
+                            
+                            // Check if user is on World Chain
+                            await checkWorldChainNetwork();
+                        }
+                    } else {
+                        showNotification('MetaMask not found. Please install MetaMask.', 'error');
+                    }
+                } catch (error) {
+                    console.error('MetaMask connection failed:', error);
+                    showNotification('Failed to connect to MetaMask', 'error');
+                }
+            }
+
+            function updateWalletUI(address) {
+                connectWalletBtn.innerHTML = `
+                    <i data-lucide="wallet" class="w-5 h-5"></i>
+                    <span>${address.slice(0, 6)}...${address.slice(-4)}</span>
+                `;
+                connectWalletBtn.className = 'bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 rounded-lg font-bold hover:from-green-600 hover:to-emerald-600 transition-all flex items-center space-x-2 shadow-lg shadow-green-500/50 text-white';
+                
+                // Close modal
+                const modal = document.querySelector('.fixed.inset-0');
+                if (modal) document.body.removeChild(modal);
+            }
+
+            async function checkWorldChainNetwork() {
+                try {
+                    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+                    if (chainId !== '0x1e0') { // World Chain mainnet
+                        const switchResult = await window.ethereum.request({
+                            method: 'wallet_switchEthereumChain',
+                            params: [{ chainId: '0x1e0' }],
+                        });
+                        
+                        if (switchResult) {
+                            showNotification('Switched to World Chain network', 'success');
+                        }
+                    }
+                } catch (error) {
+                    console.error('Network switch failed:', error);
+                    showNotification('Please switch to World Chain network', 'error');
+                }
+            }
+
+            async function sendWorldAppNotification(title, message) {
+                try {
+                    const response = await fetch('/api/send-notification', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            title,
+                            message,
+                            action: 'ghostart-welcome'
+                        }),
+                    });
+                    
+                    const result = await response.json();
+                    return result.success;
+                } catch (error) {
+                    console.error('Failed to send notification:', error);
+                }
+            }
+
+            function disconnectWallet() {
+                isConnected = false;
+                connectWalletBtn.innerHTML = `
+                    <i data-lucide="wallet" class="w-5 h-5"></i>
+                    <span>Connect Wallet</span>
+                `;
+                connectWalletBtn.className = 'bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3 rounded-lg font-bold hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center space-x-2 shadow-lg shadow-blue-500/50 text-white';
+                showNotification('Wallet disconnected successfully!', 'info');
+            }
+
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+                notification.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            }
         });
     </script>
 </body>
