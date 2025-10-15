@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHOSTART Wallet - My NFTs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-900">
+    <!-- Header -->
+    <header class="bg-white/80 backdrop-blur-md border-b border-blue-200/50 shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-500 rounded-full blur-md opacity-75 animate-pulse"></div>
+                        <img src="/ghostart-cryptocurrency-coin-logo.jpg" alt="GHOSTART" class="relative z-10 w-10 h-10 rounded-full shadow-2xl">
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">GHOSTART Wallet</span>
+                        <p class="text-xs text-gray-600">NFT Collection</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <button class="p-2 hover:bg-blue-100 rounded-lg transition-colors">
+                        <i data-lucide="eye" class="w-5 h-5 text-gray-600"></i>
+                    </button>
+                    <button class="p-2 hover:bg-blue-100 rounded-lg transition-colors">
+                        <i data-lucide="settings" class="w-5 h-5 text-gray-600"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6">
+        <!-- Wallet Overview -->
+        <div class="bg-white rounded-3xl shadow-lg p-6 mb-6 border border-blue-200">
+            <div class="flex justify-between items-start mb-6">
+                <div>
+                    <h2 class="text-2xl font-bold text-gray-900 mb-2">Wallet Overview</h2>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                        <span class="text-sm text-gray-600">Connected to World Chain</span>
+                    </div>
+                </div>
+                <button class="flex items-center space-x-2 bg-blue-50 hover:bg-blue-100 px-4 py-2 rounded-lg transition-colors">
+                    <span class="text-sm font-semibold text-blue-600">0x1234...5678</span>
+                    <i data-lucide="copy" class="w-4 h-4 text-blue-600"></i>
+                </button>
+            </div>
+
+            <!-- Balance Cards -->
+            <div class="grid md:grid-cols-2 gap-4">
+                <div class="bg-gradient-to-r from-blue-50 to-cyan-50 p-6 rounded-2xl border border-blue-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                                <i data-lucide="coins" class="text-white w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">WLD Balance</p>
+                                <p class="text-2xl font-bold text-gray-900">1,250.50</p>
+                            </div>
+                        </div>
+                        <button class="p-2 hover:bg-white/50 rounded-lg transition-colors">
+                            <i data-lucide="external-link" class="w-4 h-4 text-gray-600"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-indigo-50 to-blue-50 p-6 rounded-2xl border border-indigo-200">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center">
+                                <img src="/ghostart-cryptocurrency-coin-logo.jpg" alt="GHOSTART" class="w-5 h-5 rounded-full">
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-600">$GHOSTART</p>
+                                <p class="text-2xl font-bold text-gray-900">5,000,000</p>
+                            </div>
+                        </div>
+                        <button class="p-2 hover:bg-white/50 rounded-lg transition-colors">
+                            <i data-lucide="external-link" class="w-4 h-4 text-gray-600"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="flex items-center justify-between mb-6">
+            <div class="flex items-center space-x-1 bg-blue-50 p-1 rounded-xl">
+                <button class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-white text-blue-600 shadow-sm">
+                    <i data-lucide="grid-3x3" class="w-4 h-4"></i>
+                    <span class="font-semibold">NFTs</span>
+                </button>
+                <button class="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-600 hover:text-gray-900">
+                    <i data-lucide="coins" class="w-4 h-4"></i>
+                    <span class="font-semibold">Tokens</span>
+                </button>
+                <button class="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-600 hover:text-gray-900">
+                    <i data-lucide="activity" class="w-4 h-4"></i>
+                    <span class="font-semibold">Activity</span>
+                </button>
+                <button class="flex items-center space-x-2 px-4 py-2 rounded-lg text-gray-600 hover:text-gray-900">
+                    <i data-lucide="settings" class="w-4 h-4"></i>
+                    <span class="font-semibold">Settings</span>
+                </button>
+            </div>
+
+            <div class="flex items-center space-x-2">
+                <button class="p-2 hover:bg-blue-100 rounded-lg transition-colors">
+                    <i data-lucide="grid-3x3" class="w-5 h-5 text-gray-600"></i>
+                </button>
+                <button class="p-2 hover:bg-blue-100 rounded-lg transition-colors">
+                    <i data-lucide="filter" class="w-5 h-5 text-gray-600"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative mb-6">
+            <i data-lucide="search" class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5"></i>
+            <input type="text" placeholder="Search NFTs, collections, or addresses..." class="w-full pl-12 pr-4 py-4 bg-white border border-blue-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-900 placeholder-gray-500">
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
+            <div class="bg-white p-4 rounded-xl border border-blue-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600">Total NFTs</p>
+                        <p class="text-2xl font-bold text-gray-900">3</p>
+                    </div>
+                    <i data-lucide="grid-3x3" class="text-blue-500 w-6 h-6"></i>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-blue-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600">Collections</p>
+                        <p class="text-2xl font-bold text-gray-900">1</p>
+                    </div>
+                    <i data-lucide="star" class="text-indigo-500 w-6 h-6"></i>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-blue-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600">Floor Price</p>
+                        <p class="text-2xl font-bold text-gray-900">0.1 WLD</p>
+                    </div>
+                    <i data-lucide="trending-up" class="text-green-500 w-6 h-6"></i>
+                </div>
+            </div>
+            <div class="bg-white p-4 rounded-xl border border-blue-200">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <p class="text-sm text-gray-600">Volume</p>
+                        <p class="text-2xl font-bold text-gray-900">1.2K WLD</p>
+                    </div>
+                    <i data-lucide="bar-chart-3" class="text-cyan-500 w-6 h-6"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- NFT Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- NFT 1 -->
+            <div class="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all border border-blue-200 group">
+                <div class="aspect-square relative">
+                    <img src="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=500&h=500&fit=crop" alt="Cosmic Ghost #001" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="flex space-x-2">
+                            <button class="p-2 bg-white/90 backdrop-blur-sm rounded-lg hover:bg-white transition-colors">
+                                <i data-lucide="heart" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                            <button class="p-2 bg-white/90 backdrop-blur-sm rounded-lg hover:bg-white transition-colors">
+                                <i data-lucide="share-2" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg text-gray-900 mb-1">Cosmic Ghost #001</h3>
+                    <p class="text-sm text-gray-500 mb-3">by 0x1234...5678</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-gray-600">Price</span>
+                            <p class="font-bold text-blue-600">100 WLD</p>
+                        </div>
+                        <button class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all">
+                            List
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NFT 2 -->
+            <div class="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all border border-blue-200 group">
+                <div class="aspect-square relative">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=500&h=500&fit=crop" alt="Ethereal Spirit #042" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="flex space-x-2">
+                            <button class="p-2 bg-white/90 backdrop-blur-sm rounded-lg hover:bg-white transition-colors">
+                                <i data-lucide="heart" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                            <button class="p-2 bg-white/90 backdrop-blur-sm rounded-lg hover:bg-white transition-colors">
+                                <i data-lucide="share-2" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg text-gray-900 mb-1">Ethereal Spirit #042</h3>
+                    <p class="text-sm text-gray-500 mb-3">by 0xabcd...ef01</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-gray-600">Price</span>
+                            <p class="font-bold text-blue-600">75 WLD</p>
+                        </div>
+                        <button class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all">
+                            List
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- NFT 3 -->
+            <div class="bg-white rounded-xl overflow-hidden hover:shadow-lg transition-all border border-blue-200 group">
+                <div class="aspect-square relative">
+                    <img src="https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?w=500&h=500&fit=crop" alt="Phantom Art #777" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                    <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <div class="flex space-x-2">
+                            <button class="p-2 bg-white/90 backdrop-blur-sm rounded-lg hover:bg-white transition-colors">
+                                <i data-lucide="heart" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                            <button class="p-2 bg-white/90 backdrop-blur-sm rounded-lg hover:bg-white transition-colors">
+                                <i data-lucide="share-2" class="w-4 h-4 text-gray-600"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4">
+                    <h3 class="font-bold text-lg text-gray-900 mb-1">Phantom Art #777</h3>
+                    <p class="text-sm text-gray-500 mb-3">by 0x9876...5432</p>
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="text-sm text-gray-600">Price</span>
+                            <p class="font-bold text-blue-600">150 WLD</p>
+                        </div>
+                        <button class="bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all">
+                            List
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+        
+        // Add interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to NFT cards
+            document.querySelectorAll('.group').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'scale(1.02)';
+                });
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'scale(1)';
+                });
+            });
+
+            // Tab switching functionality
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', function() {
+                    if (this.textContent.includes('NFTs') || this.textContent.includes('Tokens') || this.textContent.includes('Activity') || this.textContent.includes('Settings')) {
+                        // Remove active class from all tabs
+                        document.querySelectorAll('button').forEach(btn => {
+                            btn.classList.remove('bg-white', 'text-blue-600', 'shadow-sm');
+                            btn.classList.add('text-gray-600', 'hover:text-gray-900');
+                        });
+                        // Add active class to clicked tab
+                        this.classList.add('bg-white', 'text-blue-600', 'shadow-sm');
+                        this.classList.remove('text-gray-600', 'hover:text-gray-900');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

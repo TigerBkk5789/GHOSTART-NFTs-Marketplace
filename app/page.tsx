@@ -275,7 +275,7 @@ export default function HomePage() {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
             <a
-              href="https://worldcoin.org/mini-app?app_id=app_15daccf5b7d4ec9b7dbba044a8fdeab5"
+              href="https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75"
               target="_blank"
               rel="noopener noreferrer"
               className="group bg-gradient-to-r from-blue-500 to-indigo-500 px-10 py-5 rounded-xl font-bold text-xl hover:from-blue-600 hover:to-indigo-600 transition-all flex items-center justify-center space-x-3 shadow-2xl shadow-blue-500/50 transform hover:scale-105 text-white"
@@ -395,16 +395,16 @@ export default function HomePage() {
             {t.joinDesc}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <a
-              href="https://worldcoin.org/mini-app?app_id=app_15daccf5b7d4ec9b7dbba044a8fdeab5"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center space-x-4 bg-gradient-to-r from-blue-500 to-indigo-500 px-12 py-6 rounded-2xl font-bold text-2xl hover:from-blue-600 hover:to-indigo-600 transition-all shadow-2xl shadow-blue-500/50 transform hover:scale-105 text-white"
-            >
-              <Zap size={32} />
-              <span>{t.startTrading}</span>
-              <ExternalLink size={28} />
-            </a>
+                <a
+                  href="https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center space-x-4 bg-gradient-to-r from-blue-500 to-indigo-500 px-12 py-6 rounded-2xl font-bold text-2xl hover:from-blue-600 hover:to-indigo-600 transition-all shadow-2xl shadow-blue-500/50 transform hover:scale-105 text-white"
+                >
+                  <Zap size={32} />
+                  <span>{t.startTrading}</span>
+                  <ExternalLink size={28} />
+                </a>
           </div>
         </div>
       </section>
@@ -444,10 +444,10 @@ export default function HomePage() {
               <span>Contract</span>
               <ExternalLink size={16} />
             </a>
-            <a href="https://worldcoin.org/mini-app?app_id=app_15daccf5b7d4ec9b7dbba044a8fdeab5" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center space-x-2">
-              <span>Trade on PUF</span>
-              <ExternalLink size={16} />
-            </a>
+                <a href="https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center space-x-2">
+                  <span>Trade on PUF</span>
+                  <ExternalLink size={16} />
+                </a>
           </div>
           <div className="mt-8 pt-8 border-t border-blue-200/20">
             <p className="text-blue-200 text-sm">
