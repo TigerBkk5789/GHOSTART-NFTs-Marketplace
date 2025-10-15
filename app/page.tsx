@@ -118,32 +118,28 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-900 overflow-x-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-blue-900 text-white overflow-x-hidden">
       {/* Animated Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-2000"></div>
-        <div className="absolute top-40 left-40 w-80 h-80 bg-indigo-400 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob animation-delay-4000"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div className="absolute top-40 left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
       </div>
 
       {/* Header */}
-      <header className="fixed top-0 w-full bg-white/80 backdrop-blur-md z-50 border-b border-blue-200/50 shadow-lg">
+      <header className="fixed top-0 w-full bg-black/80 backdrop-blur-md z-50 border-b border-blue-500/50 shadow-lg">
         <div className="container mx-auto px-4 py-4">
           <div className="flex justify-between items-center">
             <div className="flex items-center space-x-3">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-500 rounded-full blur-md opacity-75 animate-pulse"></div>
-                <Image 
-                  src="/ghostart-cryptocurrency-coin-logo.jpg"
-                  alt="GHOSTART"
-                  width={50}
-                  height={50}
-                  className="relative z-10 rounded-full shadow-2xl"
-                />
+                <div className="relative z-10 w-12 h-12 rounded-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-blue-900 border-2 border-blue-400 shadow-lg">
+                  <span className="text-white font-bold text-lg">👻</span>
+                </div>
               </div>
               <div>
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">GHOSTART</span>
-                <p className="text-xs text-gray-600">NFT Marketplace</p>
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">GHOSTART</span>
+                <p className="text-xs text-gray-300">NFT Marketplace</p>
               </div>
             </div>
 
@@ -151,7 +147,7 @@ export default function HomePage() {
               <select
                 value={language}
                 onChange={(e) => setLanguage(e.target.value)}
-                className="bg-white/80 border border-blue-200 rounded-lg px-3 py-2 text-sm backdrop-blur-sm text-gray-900"
+                className="bg-black/80 border border-blue-500 rounded-lg px-3 py-2 text-sm backdrop-blur-sm text-white"
               >
                 <option value="en">🇬🇧 English</option>
                 <option value="es">🇪🇸 Español</option>
@@ -163,18 +159,18 @@ export default function HomePage() {
 
               {isConnected ? (
                 <div className="flex items-center space-x-3">
-                  <div className="bg-blue-50 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-200">
-                    <p className="text-xs text-gray-600">Balance</p>
-                    <p className="font-bold text-blue-600">{ghostartBalance.toFixed(0)} $GHOST</p>
+                  <div className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-500">
+                    <p className="text-xs text-gray-300">Balance</p>
+                    <p className="font-bold text-blue-400">{ghostartBalance.toFixed(0)} $GHOST</p>
                   </div>
-                  <div className="bg-gradient-to-r from-blue-500 to-indigo-500 px-4 py-2 rounded-lg font-semibold shadow-lg text-white">
+                  <div className="bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2 rounded-lg font-semibold shadow-lg text-white">
                     {address?.slice(0, 6)}...{address?.slice(-4)}
                   </div>
                 </div>
               ) : (
                 <button
                   onClick={() => setShowWalletModal(true)}
-                  className="bg-gradient-to-r from-blue-500 to-indigo-500 px-6 py-3 rounded-lg font-bold hover:from-blue-600 hover:to-indigo-600 transition-all flex items-center space-x-2 shadow-lg shadow-blue-500/50 text-white"
+                  className="bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3 rounded-lg font-bold hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center space-x-2 shadow-lg shadow-blue-500/50 text-white"
                 >
                   <Wallet size={20} />
                   <span>{t.connect}</span>
@@ -221,27 +217,27 @@ export default function HomePage() {
       <section className="pt-32 pb-20 px-4 relative">
         <div className="container mx-auto text-center">
           {/* Status Badge */}
-          <div className="inline-flex items-center space-x-2 bg-blue-50 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-blue-200">
+          <div className="inline-flex items-center space-x-2 bg-black/80 backdrop-blur-sm px-6 py-3 rounded-full mb-8 border border-blue-500">
             <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
-            <Globe className="text-blue-600" size={20} />
-            <span className="text-sm font-semibold text-gray-900">{t.builtOn}</span>
+            <Globe className="text-blue-400" size={20} />
+            <span className="text-sm font-semibold text-white">{t.builtOn}</span>
           </div>
           
-          <p className="text-lg mb-8 text-gray-700 max-w-2xl mx-auto">{t.subtitle}</p>
+          <p className="text-lg mb-8 text-gray-300 max-w-2xl mx-auto">{t.subtitle}</p>
 
           {/* Platform Support */}
           <div className="flex justify-center space-x-8 mb-16">
-            <div className="flex items-center space-x-2 text-sm bg-blue-50 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-200">
-              <Globe size={20} className="text-blue-600" />
-              <span className="text-gray-900">Web</span>
+            <div className="flex items-center space-x-2 text-sm bg-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-500">
+              <Globe size={20} className="text-blue-400" />
+              <span className="text-white">Web</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm bg-blue-50 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-200">
-              <Shield size={20} className="text-blue-600" />
-              <span className="text-gray-900">iOS</span>
+            <div className="flex items-center space-x-2 text-sm bg-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-500">
+              <Shield size={20} className="text-blue-400" />
+              <span className="text-white">iOS</span>
             </div>
-            <div className="flex items-center space-x-2 text-sm bg-blue-50 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-200">
-              <Zap size={20} className="text-blue-600" />
-              <span className="text-gray-900">Android</span>
+            <div className="flex items-center space-x-2 text-sm bg-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-500">
+              <Zap size={20} className="text-blue-400" />
+              <span className="text-white">Android</span>
             </div>
           </div>
 
@@ -250,13 +246,9 @@ export default function HomePage() {
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-500 rounded-full blur-3xl opacity-60 animate-pulse"></div>
             <div className="absolute inset-4 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-full blur-2xl opacity-40 animate-ping"></div>
             <div className="relative z-10 w-full h-full flex items-center justify-center">
-              <Image
-                src="/ghostart-cryptocurrency-coin-logo.jpg"
-                alt="GHOSTART Token"
-                width={320}
-                height={320}
-                className="rounded-full shadow-2xl border-4 border-blue-200"
-              />
+              <div className="w-80 h-80 rounded-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-blue-900 border-4 border-blue-400 shadow-2xl">
+                <span className="text-8xl">👻</span>
+              </div>
             </div>
             {/* Floating Elements */}
             <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-400 rounded-full animate-bounce"></div>
@@ -264,11 +256,11 @@ export default function HomePage() {
             <div className="absolute top-1/2 -right-8 w-4 h-4 bg-indigo-400 rounded-full animate-bounce animation-delay-2000"></div>
           </div>
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-blue-600 via-cyan-600 to-indigo-600 bg-clip-text text-transparent leading-tight">
+          <h1 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 bg-clip-text text-transparent leading-tight">
             {t.tradeTitle}
           </h1>
 
-          <p className="text-xl md:text-2xl mb-12 text-gray-700 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-xl md:text-2xl mb-12 text-gray-300 max-w-4xl mx-auto leading-relaxed">
             {t.launchText}
           </p>
 
@@ -278,7 +270,7 @@ export default function HomePage() {
               href="https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75"
               target="_blank"
               rel="noopener noreferrer"
-              className="group bg-gradient-to-r from-blue-500 to-indigo-500 px-10 py-5 rounded-xl font-bold text-xl hover:from-blue-600 hover:to-indigo-600 transition-all flex items-center justify-center space-x-3 shadow-2xl shadow-blue-500/50 transform hover:scale-105 text-white"
+              className="group bg-gradient-to-r from-blue-500 to-cyan-500 px-10 py-5 rounded-xl font-bold text-xl hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center justify-center space-x-3 shadow-2xl shadow-blue-500/50 transform hover:scale-105 text-white"
             >
               <Zap size={28} />
               <span>{t.tradeNow}</span>
@@ -287,7 +279,7 @@ export default function HomePage() {
             
             <a
               href="/collection"
-              className="group bg-blue-50 backdrop-blur-sm border-2 border-blue-200 px-10 py-5 rounded-xl font-bold text-xl hover:bg-blue-100 transition-all flex items-center justify-center space-x-3 transform hover:scale-105 text-gray-900"
+              className="group bg-black/80 backdrop-blur-sm border-2 border-blue-500 px-10 py-5 rounded-xl font-bold text-xl hover:bg-black transition-all flex items-center justify-center space-x-3 transform hover:scale-105 text-white"
             >
               <span>Explore Collection</span>
               <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
@@ -295,51 +287,51 @@ export default function HomePage() {
           </div>
 
           {/* Early Trading Badge */}
-          <div className="inline-flex items-center space-x-3 bg-blue-100 border border-blue-300 px-8 py-4 rounded-full backdrop-blur-sm">
+          <div className="inline-flex items-center space-x-3 bg-black/80 border border-blue-500 px-8 py-4 rounded-full backdrop-blur-sm">
             <div className="w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
-            <span className="font-bold text-blue-700 text-lg">{t.earlyTrading}</span>
-            <Sparkles className="text-blue-600 animate-spin" size={20} />
+            <span className="font-bold text-white text-lg">{t.earlyTrading}</span>
+            <Sparkles className="text-blue-400 animate-spin" size={20} />
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="py-24 px-4 bg-blue-50/50 backdrop-blur-sm">
+      <section className="py-24 px-4 bg-black/50 backdrop-blur-sm">
         <div className="container mx-auto">
-          <h2 className="text-4xl md:text-6xl font-bold text-center mb-20 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-6xl font-bold text-center mb-20 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             {t.features}
           </h2>
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* Feature 1 */}
-            <div className="group bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-3xl border border-blue-200 hover:border-blue-400 transition-all transform hover:scale-105 backdrop-blur-sm">
+            <div className="group bg-gradient-to-br from-black/80 to-gray-900/80 p-8 rounded-3xl border border-blue-500 hover:border-blue-400 transition-all transform hover:scale-105 backdrop-blur-sm">
               <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Flame className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">{t.freeMinting}</h3>
-              <p className="text-gray-700 leading-relaxed">
+              <h3 className="text-2xl font-bold mb-4 text-white">{t.freeMinting}</h3>
+              <p className="text-gray-300 leading-relaxed">
                 {t.freeMintingDesc}
               </p>
             </div>
 
             {/* Feature 2 */}
-            <div className="group bg-gradient-to-br from-indigo-50 to-blue-50 p-8 rounded-3xl border border-indigo-200 hover:border-indigo-400 transition-all transform hover:scale-105 backdrop-blur-sm">
+            <div className="group bg-gradient-to-br from-black/80 to-gray-900/80 p-8 rounded-3xl border border-blue-500 hover:border-blue-400 transition-all transform hover:scale-105 backdrop-blur-sm">
               <div className="w-16 h-16 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Shield className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">{t.secureTrading}</h3>
-              <p className="text-gray-700 leading-relaxed">
+              <h3 className="text-2xl font-bold mb-4 text-white">{t.secureTrading}</h3>
+              <p className="text-gray-300 leading-relaxed">
                 {t.secureTradingDesc}
               </p>
             </div>
 
             {/* Feature 3 */}
-            <div className="group bg-gradient-to-br from-cyan-50 to-blue-50 p-8 rounded-3xl border border-cyan-200 hover:border-cyan-400 transition-all transform hover:scale-105 backdrop-blur-sm">
+            <div className="group bg-gradient-to-br from-black/80 to-gray-900/80 p-8 rounded-3xl border border-blue-500 hover:border-blue-400 transition-all transform hover:scale-105 backdrop-blur-sm">
               <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Globe className="text-white" size={32} />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-gray-900">{t.globalAccess}</h3>
-              <p className="text-gray-700 leading-relaxed">
+              <h3 className="text-2xl font-bold mb-4 text-white">{t.globalAccess}</h3>
+              <p className="text-gray-300 leading-relaxed">
                 {t.globalAccessDesc}
               </p>
             </div>
@@ -348,50 +340,50 @@ export default function HomePage() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-24 px-4">
+      <section className="py-24 px-4 bg-black/30">
         <div className="container mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             {t.stats}
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
-            <div className="bg-blue-50 backdrop-blur-sm p-8 rounded-3xl border border-blue-200 text-center group hover:border-blue-400 transition-all">
+            <div className="bg-black/80 backdrop-blur-sm p-8 rounded-3xl border border-blue-500 text-center group hover:border-blue-400 transition-all">
               <div className="w-20 h-20 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <BarChart3 className="text-white" size={40} />
               </div>
-              <h4 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              <h4 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 1,850
               </h4>
-              <p className="text-gray-600 text-lg">{t.marketCap}</p>
+              <p className="text-gray-300 text-lg">{t.marketCap}</p>
             </div>
-            <div className="bg-indigo-50 backdrop-blur-sm p-8 rounded-3xl border border-indigo-200 text-center group hover:border-indigo-400 transition-all">
+            <div className="bg-black/80 backdrop-blur-sm p-8 rounded-3xl border border-blue-500 text-center group hover:border-blue-400 transition-all">
               <div className="w-20 h-20 bg-gradient-to-r from-indigo-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <TrendingUp className="text-white" size={40} />
               </div>
-              <h4 className="text-6xl font-bold mb-4 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+              <h4 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 92.5%
               </h4>
-              <p className="text-gray-600 text-lg">{t.toLaunch}</p>
+              <p className="text-gray-300 text-lg">{t.toLaunch}</p>
             </div>
-            <div className="bg-cyan-50 backdrop-blur-sm p-8 rounded-3xl border border-cyan-200 text-center group hover:border-cyan-400 transition-all">
+            <div className="bg-black/80 backdrop-blur-sm p-8 rounded-3xl border border-blue-500 text-center group hover:border-blue-400 transition-all">
               <div className="w-20 h-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                 <Star className="text-white" size={40} />
               </div>
-              <h4 className="text-6xl font-bold mb-4 bg-gradient-to-r from-cyan-600 to-blue-600 bg-clip-text text-transparent">
+              <h4 className="text-6xl font-bold mb-4 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                 100x-1000x
               </h4>
-              <p className="text-gray-600 text-lg">{t.potential}</p>
+              <p className="text-gray-300 text-lg">{t.potential}</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 px-4 bg-gradient-to-r from-blue-100 to-indigo-100 backdrop-blur-sm">
+      <section className="py-24 px-4 bg-gradient-to-r from-black/80 to-gray-900/80 backdrop-blur-sm">
         <div className="container mx-auto text-center">
-          <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          <h2 className="text-5xl md:text-7xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
             {t.joinNow}
           </h2>
-          <p className="text-xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
             {t.joinDesc}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
@@ -399,7 +391,7 @@ export default function HomePage() {
                   href="https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center space-x-4 bg-gradient-to-r from-blue-500 to-indigo-500 px-12 py-6 rounded-2xl font-bold text-2xl hover:from-blue-600 hover:to-indigo-600 transition-all shadow-2xl shadow-blue-500/50 transform hover:scale-105 text-white"
+                  className="group inline-flex items-center space-x-4 bg-gradient-to-r from-blue-500 to-cyan-500 px-12 py-6 rounded-2xl font-bold text-2xl hover:from-blue-600 hover:to-cyan-600 transition-all shadow-2xl shadow-blue-500/50 transform hover:scale-105 text-white"
                 >
                   <Zap size={32} />
                   <span>{t.startTrading}</span>
@@ -410,28 +402,24 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-16 px-4 bg-blue-900/80 border-t border-blue-200 backdrop-blur-sm">
+      <footer className="py-16 px-4 bg-black/80 border-t border-blue-500 backdrop-blur-sm">
         <div className="container mx-auto text-center">
           <div className="flex justify-center items-center space-x-4 mb-8">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-500 rounded-full blur-md opacity-75 animate-pulse"></div>
-              <Image 
-                src="/ghostart-cryptocurrency-coin-logo.jpg"
-                alt="GHOSTART"
-                width={60}
-                height={60}
-                className="relative z-10 rounded-full shadow-2xl"
-              />
+              <div className="relative z-10 w-15 h-15 rounded-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-blue-900 border-2 border-blue-400 shadow-2xl">
+                <span className="text-white font-bold text-2xl">👻</span>
+              </div>
             </div>
             <div>
               <span className="text-3xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">GHOSTART</span>
-              <p className="text-sm text-blue-200">{t.poweredBy}</p>
+              <p className="text-sm text-gray-300">{t.poweredBy}</p>
             </div>
           </div>
-          <p className="text-blue-100 mb-8 text-lg">
+          <p className="text-gray-300 mb-8 text-lg">
             NFT Marketplace on World Chain
           </p>
-          <div className="flex justify-center space-x-8 text-sm text-blue-200">
+          <div className="flex justify-center space-x-8 text-sm text-gray-300">
             <a href="/collection" className="hover:text-white transition-colors flex items-center space-x-2">
               <span>Collection</span>
               <ArrowRight size={16} />
