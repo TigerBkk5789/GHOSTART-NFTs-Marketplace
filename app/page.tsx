@@ -142,7 +142,7 @@ export default function HomePage() {
                 <p className="text-xs text-gray-300">NFT Marketplace</p>
               </div>
             </div>
-
+            
             <div className="hidden md:flex items-center space-x-6">
               <select
                 value={language}
@@ -156,25 +156,25 @@ export default function HomePage() {
                 <option value="ko">🇰🇷 한국어</option>
                 <option value="pt">🇧🇷 Português</option>
               </select>
-
+              
               {isConnected ? (
                 <div className="flex items-center space-x-3">
                   <div className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-500">
                     <p className="text-xs text-gray-300">Balance</p>
                     <p className="font-bold text-blue-400">{ghostartBalance.toFixed(0)} $GHOST</p>
-                  </div>
+                </div>
                   <div className="bg-gradient-to-r from-blue-500 to-cyan-500 px-4 py-2 rounded-lg font-semibold shadow-lg text-white">
                     {address?.slice(0, 6)}...{address?.slice(-4)}
-                  </div>
-                </div>
+            </div>
+          </div>
               ) : (
-                <button
-                  onClick={() => setShowWalletModal(true)}
+              <button 
+                onClick={() => setShowWalletModal(true)}
                   className="bg-gradient-to-r from-blue-500 to-cyan-500 px-6 py-3 rounded-lg font-bold hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center space-x-2 shadow-lg shadow-blue-500/50 text-white"
-                >
-                  <Wallet size={20} />
-                  <span>{t.connect}</span>
-                </button>
+              >
+                <Wallet size={20} />
+                <span>{t.connect}</span>
+              </button>
               )}
             </div>
 
@@ -184,8 +184,8 @@ export default function HomePage() {
             >
               {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
-          </div>
-        </div>
+                </div>
+                </div>
       </header>
 
       {/* Mobile Menu */}
@@ -209,9 +209,9 @@ export default function HomePage() {
             >
               {t.connect}
             </button>
-          </div>
-        </div>
-      )}
+                </div>
+              </div>
+            )}
 
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-4 relative">
@@ -221,8 +221,8 @@ export default function HomePage() {
             <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse"></div>
             <Globe className="text-blue-400" size={20} />
             <span className="text-sm font-semibold text-white">{t.builtOn}</span>
-          </div>
-          
+        </div>
+
           <p className="text-lg mb-8 text-gray-300 max-w-2xl mx-auto">{t.subtitle}</p>
 
           {/* Platform Support */}
@@ -234,13 +234,13 @@ export default function HomePage() {
             <div className="flex items-center space-x-2 text-sm bg-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-500">
               <Shield size={20} className="text-blue-400" />
               <span className="text-white">iOS</span>
-            </div>
+                </div>
             <div className="flex items-center space-x-2 text-sm bg-black/80 backdrop-blur-sm px-4 py-2 rounded-lg border border-blue-500">
               <Zap size={20} className="text-blue-400" />
               <span className="text-white">Android</span>
-            </div>
-          </div>
-
+                </div>
+              </div>
+              
           {/* GHOSTART Coin with Enhanced Animation */}
           <div className="relative w-80 h-80 mx-auto mb-16">
             <div className="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-500 rounded-full blur-3xl opacity-60 animate-pulse"></div>
@@ -248,8 +248,8 @@ export default function HomePage() {
             <div className="relative z-10 w-full h-full flex items-center justify-center">
               <div className="w-80 h-80 rounded-full flex items-center justify-center bg-gradient-to-br from-gray-800 to-blue-900 border-4 border-blue-400 shadow-2xl">
                 <span className="text-8xl">👻</span>
-              </div>
-            </div>
+                  </div>
+                </div>
             {/* Floating Elements */}
             <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-400 rounded-full animate-bounce"></div>
             <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-cyan-400 rounded-full animate-bounce animation-delay-1000"></div>
@@ -266,10 +266,10 @@ export default function HomePage() {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-            <a
-              href="https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75"
-              target="_blank"
-              rel="noopener noreferrer"
+                <a 
+                  href="https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75"
+                  target="_blank"
+                  rel="noopener noreferrer"
               className="group bg-gradient-to-r from-blue-500 to-cyan-500 px-10 py-5 rounded-xl font-bold text-xl hover:from-blue-600 hover:to-cyan-600 transition-all flex items-center justify-center space-x-3 shadow-2xl shadow-blue-500/50 transform hover:scale-105 text-white"
             >
               <Zap size={28} />
@@ -283,16 +283,16 @@ export default function HomePage() {
             >
               <span>Explore Collection</span>
               <ChevronRight size={24} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-          </div>
+                </a>
+              </div>
 
           {/* Early Trading Badge */}
           <div className="inline-flex items-center space-x-3 bg-black/80 border border-blue-500 px-8 py-4 rounded-full backdrop-blur-sm">
             <div className="w-4 h-4 bg-blue-500 rounded-full animate-pulse"></div>
             <span className="font-bold text-white text-lg">{t.earlyTrading}</span>
             <Sparkles className="text-blue-400 animate-spin" size={20} />
+            </div>
           </div>
-        </div>
       </section>
 
       {/* Features Section */}
@@ -312,7 +312,7 @@ export default function HomePage() {
               <p className="text-gray-300 leading-relaxed">
                 {t.freeMintingDesc}
               </p>
-            </div>
+        </div>
 
             {/* Feature 2 */}
             <div className="group bg-gradient-to-br from-black/80 to-gray-900/80 p-8 rounded-3xl border border-blue-500 hover:border-blue-400 transition-all transform hover:scale-105 backdrop-blur-sm">
@@ -335,8 +335,8 @@ export default function HomePage() {
                 {t.globalAccessDesc}
               </p>
             </div>
-          </div>
-        </div>
+                      </div>
+                    </div>
       </section>
 
       {/* Stats Section */}
@@ -372,9 +372,9 @@ export default function HomePage() {
                 100x-1000x
               </h4>
               <p className="text-gray-300 text-lg">{t.potential}</p>
+                  </div>
+                </div>
             </div>
-          </div>
-        </div>
       </section>
 
       {/* CTA Section */}
@@ -397,8 +397,8 @@ export default function HomePage() {
                   <span>{t.startTrading}</span>
                   <ExternalLink size={28} />
                 </a>
+            </div>
           </div>
-        </div>
       </section>
 
       {/* Footer */}
@@ -442,7 +442,7 @@ export default function HomePage() {
               © 2024 GHOSTART NFT Marketplace. Built with ❤️ on World Chain.
             </p>
           </div>
-        </div>
+          </div>
       </footer>
 
       {/* Wallet Modal */}

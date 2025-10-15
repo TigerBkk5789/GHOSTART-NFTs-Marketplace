@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GHOSTART NFT Detail - NFT Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+        @keyframes blob {
+            0% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(30px, -50px) scale(1.1); }
+            66% { transform: translate(-20px, 20px) scale(0.9); }
+            100% { transform: translate(0px, 0px) scale(1); }
+        }
+        .ghostart-logo {
+            background: linear-gradient(45deg, #1a1a2e, #16213e, #0f3460);
+            border: 2px solid #00d4ff;
+            box-shadow: 0 0 20px #00d4ff, inset 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+        .okx-style-card {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), rgba(0, 20, 40, 0.9));
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .okx-style-button {
+            background: linear-gradient(135deg, #00d4ff, #0099cc);
+            border: 1px solid rgba(0, 212, 255, 0.5);
+            box-shadow: 0 4px 15px rgba(0, 212, 255, 0.3);
+        }
+        .okx-style-button:hover {
+            background: linear-gradient(135deg, #00b8e6, #0088bb);
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+        }
+        .nft-image {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 20, 40, 0.95));
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            backdrop-filter: blur(15px);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-900 via-black to-blue-900 text-white">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute top-40 left-40 w-80 h-80 bg-indigo-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="bg-black/80 backdrop-blur-md border-b border-blue-500/50 shadow-lg sticky top-0 z-40">
+        <div class="container mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-3">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-500 rounded-full blur-md opacity-75 animate-pulse"></div>
+                        <div class="ghostart-logo relative z-10 w-10 h-10 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold text-lg">👻</span>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">GHOSTART NFT</span>
+                        <p class="text-xs text-gray-300">NFT Marketplace</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-3">
+                    <a href="/ghostart-marketplace.html" class="text-white hover:text-blue-400 transition-colors px-3 py-2 rounded-lg hover:bg-white/10">
+                        Home
+                    </a>
+                    <a href="/ghostart-collection.html" class="text-white hover:text-blue-400 transition-colors px-3 py-2 rounded-lg hover:bg-white/10">
+                        Collection
+                    </a>
+                    <a href="/ghostart-wallet.html" class="text-white hover:text-blue-400 transition-colors px-3 py-2 rounded-lg hover:bg-white/10">
+                        Wallet
+                    </a>
+                    <button id="connectWalletBtn" class="okx-style-button px-6 py-3 rounded-lg font-bold transition-all flex items-center space-x-2 text-white">
+                        <i data-lucide="wallet" class="w-5 h-5"></i>
+                        <span>Connect Wallet</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- NFT Image -->
+            <div class="nft-image rounded-3xl shadow-lg overflow-hidden">
+                <div class="relative h-96 lg:h-[600px] w-full">
+                    <img src="https://via.placeholder.com/800x800/0f172a/9ca3af?text=GHOSTART+NFT+Detail" alt="GHOSTART NFT Detail" class="w-full h-full object-cover">
+                    <div class="absolute top-4 right-4 bg-black/70 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">Rare</div>
+                    <div class="absolute bottom-4 left-4 bg-black/70 text-white text-sm px-3 py-1 rounded-full backdrop-blur-sm">#001</div>
+                </div>
+            </div>
+
+            <!-- NFT Details -->
+            <div class="space-y-6">
+                <!-- NFT Info -->
+                <div class="okx-style-card rounded-2xl shadow-lg p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <h1 class="text-3xl font-bold text-white">GHOSTART Genesis #001</h1>
+                        <div class="flex items-center space-x-2">
+                            <button class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                                <i data-lucide="heart" class="w-5 h-5 text-red-400"></i>
+                            </button>
+                            <button class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                                <i data-lucide="share-2" class="w-5 h-5 text-blue-400"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">A unique digital art piece from the GHOSTART collection, representing the genesis of the World Chain NFT ecosystem.</p>
+                    
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                            <span class="text-sm text-gray-300">Verified Collection</span>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <i data-lucide="star" class="text-yellow-500 w-4 h-4"></i>
+                            <span class="text-sm font-semibold text-white">4.8</span>
+                        </div>
+                    </div>
+
+                    <!-- Price and Actions -->
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-sm">Current Price</p>
+                                <p class="text-3xl font-bold text-white">2.5 WLD</p>
+                                <p class="text-gray-400 text-sm">≈ $750</p>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-gray-400 text-sm">Last Sale</p>
+                                <p class="text-lg font-semibold text-white">1.8 WLD</p>
+                                <p class="text-green-400 text-sm">+38.9%</p>
+                            </div>
+                        </div>
+
+                        <div class="flex space-x-4">
+                            <button class="flex-1 okx-style-button text-white py-4 px-6 rounded-xl font-bold text-lg transition-all">
+                                Buy Now
+                            </button>
+                            <button class="flex-1 bg-black/80 border-2 border-blue-500 text-white py-4 px-6 rounded-xl font-bold text-lg hover:bg-black transition-all">
+                                Make Offer
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Properties -->
+                <div class="okx-style-card rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-white mb-4">Properties</h2>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="bg-black/50 p-4 rounded-xl border border-blue-500">
+                            <p class="text-gray-400 text-sm">Background</p>
+                            <p class="font-bold text-white">Cosmic</p>
+                        </div>
+                        <div class="bg-black/50 p-4 rounded-xl border border-blue-500">
+                            <p class="text-gray-400 text-sm">Eyes</p>
+                            <p class="font-bold text-white">Flaming</p>
+                        </div>
+                        <div class="bg-black/50 p-4 rounded-xl border border-blue-500">
+                            <p class="text-gray-400 text-sm">Aura</p>
+                            <p class="font-bold text-white">Purple</p>
+                        </div>
+                        <div class="bg-black/50 p-4 rounded-xl border border-blue-500">
+                            <p class="text-gray-400 text-sm">Rarity</p>
+                            <p class="font-bold text-white">Legendary</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Info -->
+                <div class="okx-style-card rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-white mb-4">Collection</h2>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-400 via-cyan-500 to-indigo-500 rounded-2xl blur-lg opacity-50 animate-pulse"></div>
+                            <div class="ghostart-logo relative z-10 w-16 h-16 rounded-2xl flex items-center justify-center text-2xl">
+                                👻
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-white">GHOSTART NFTs</h3>
+                            <p class="text-gray-400">10,000 items • 2,500 owners</p>
+                            <div class="flex items-center space-x-2 mt-2">
+                                <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+                                <span class="text-sm text-gray-300">Verified Collection</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History -->
+                <div class="okx-style-card rounded-2xl shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-white mb-4">History</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between p-4 bg-black/50 rounded-xl border border-blue-500">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center">
+                                    <i data-lucide="plus" class="text-white w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white">Minted</h3>
+                                    <p class="text-sm text-gray-400">By 0x1234...5678</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-400">2 days ago</p>
+                                <p class="font-bold text-green-400">Free</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between p-4 bg-black/50 rounded-xl border border-blue-500">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                                    <i data-lucide="arrow-up-right" class="text-white w-5 h-5"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-white">Listed for Sale</h3>
+                                    <p class="text-sm text-gray-400">By 0x1234...5678</p>
+                                </div>
+                            </div>
+                            <div class="text-right">
+                                <p class="text-sm text-gray-400">1 day ago</p>
+                                <p class="font-bold text-blue-400">2.5 WLD</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Related NFTs -->
+        <div class="mt-12">
+            <h2 class="text-3xl font-bold text-white mb-8">More from this Collection</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Related NFT 1 -->
+                <a href="/ghostart-nft-detail.html?id=2" class="group nft-image rounded-2xl shadow-lg overflow-hidden transition-all transform hover:scale-102">
+                    <div class="relative h-60 w-full overflow-hidden">
+                        <img src="https://via.placeholder.com/400x400/0f172a/9ca3af?text=GHOSTART+NFT+2" alt="GHOSTART NFT 2" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute top-3 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">Buy Now</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl text-white mb-2">GHOSTART Cyber #007</h3>
+                        <p class="text-gray-400 text-sm mb-4">Collection: GHOSTART NFTs</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-xs">Price</p>
+                                <p class="font-bold text-lg text-white">1.2 WLD</p>
+                            </div>
+                            <button class="okx-style-button text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">Buy Now</button>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Related NFT 2 -->
+                <a href="/ghostart-nft-detail.html?id=3" class="group nft-image rounded-2xl shadow-lg overflow-hidden transition-all transform hover:scale-102">
+                    <div class="relative h-60 w-full overflow-hidden">
+                        <img src="https://via.placeholder.com/400x400/0f172a/9ca3af?text=GHOSTART+NFT+3" alt="GHOSTART NFT 3" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute top-3 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">New Mint</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl text-white mb-2">GHOSTART Aura #013</h3>
+                        <p class="text-gray-400 text-sm mb-4">Collection: GHOSTART NFTs</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-xs">Price</p>
+                                <p class="font-bold text-lg text-white">Free</p>
+                            </div>
+                            <button class="bg-gradient-to-r from-green-500 to-emerald-500 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:from-green-600 hover:to-emerald-600 transition-all">Mint Now</button>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Related NFT 3 -->
+                <a href="/ghostart-nft-detail.html?id=4" class="group nft-image rounded-2xl shadow-lg overflow-hidden transition-all transform hover:scale-102">
+                    <div class="relative h-60 w-full overflow-hidden">
+                        <img src="https://via.placeholder.com/400x400/0f172a/9ca3af?text=GHOSTART+NFT+4" alt="GHOSTART NFT 4" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute top-3 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">Rare</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl text-white mb-2">GHOSTART Cosmic #022</h3>
+                        <p class="text-gray-400 text-sm mb-4">Collection: GHOSTART NFTs</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-xs">Price</p>
+                                <p class="font-bold text-lg text-white">2.8 WLD</p>
+                            </div>
+                            <button class="okx-style-button text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">Buy Now</button>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Related NFT 4 -->
+                <a href="/ghostart-nft-detail.html?id=5" class="group nft-image rounded-2xl shadow-lg overflow-hidden transition-all transform hover:scale-102">
+                    <div class="relative h-60 w-full overflow-hidden">
+                        <img src="https://via.placeholder.com/400x400/0f172a/9ca3af?text=GHOSTART+NFT+5" alt="GHOSTART NFT 5" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300">
+                        <div class="absolute top-3 right-3 bg-black/70 text-white text-xs px-3 py-1 rounded-full backdrop-blur-sm">Featured</div>
+                    </div>
+                    <div class="p-5">
+                        <h3 class="font-bold text-xl text-white mb-2">GHOSTART Digital #055</h3>
+                        <p class="text-gray-400 text-sm mb-4">Collection: GHOSTART NFTs</p>
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-gray-400 text-xs">Price</p>
+                                <p class="font-bold text-lg text-white">3.5 WLD</p>
+                            </div>
+                            <button class="okx-style-button text-white px-4 py-2 rounded-lg text-sm font-semibold transition-all">Buy Now</button>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 px-4 bg-black/80 border-t border-blue-500 backdrop-blur-sm mt-12">
+        <div class="container mx-auto text-center text-gray-300">
+            <p>&copy; 2024 GHOSTART. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Wallet Connection Modal -->
+    <div id="walletModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4 hidden">
+        <div class="bg-black/90 backdrop-blur-md rounded-3xl max-w-md w-full p-8 border border-blue-500">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-white">Connect Wallet</h2>
+                <button id="closeModal" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+                    <i data-lucide="x" class="w-6 h-6 text-gray-300"></i>
+                </button>
+            </div>
+            <div class="space-y-4">
+                <button class="w-full flex items-center justify-between p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl transition-colors border border-gray-600" onclick="connectWithWallet('worldapp')">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">🌍</span>
+                        </div>
+                        <div class="text-left">
+                            <p class="font-semibold text-white">World App</p>
+                            <p class="text-sm text-gray-400">Connect with World ID</p>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                </button>
+                <button class="w-full flex items-center justify-between p-4 bg-gray-800/50 hover:bg-gray-700/50 rounded-xl transition-colors border border-gray-600" onclick="connectWithWallet('metamask')">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-gradient-to-r from-orange-500 to-yellow-500 rounded-full flex items-center justify-center">
+                            <span class="text-white font-bold">🦊</span>
+                        </div>
+                        <div class="text-left">
+                            <p class="font-semibold text-white">MetaMask</p>
+                            <p class="text-sm text-gray-400">Connect with MetaMask</p>
+                        </div>
+                    </div>
+                    <i data-lucide="chevron-right" class="w-5 h-5 text-gray-400"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // Wallet Connection Functionality
+            const connectWalletBtn = document.getElementById('connectWalletBtn');
+            const walletModal = document.getElementById('walletModal');
+            let isConnected = false;
+
+            connectWalletBtn.addEventListener('click', function() {
+                if (!isConnected) {
+                    walletModal.classList.remove('hidden');
+                } else {
+                    disconnectWallet();
+                }
+            });
+
+            document.getElementById('closeModal').addEventListener('click', () => {
+                walletModal.classList.add('hidden');
+            });
+
+            walletModal.addEventListener('click', (e) => {
+                if (e.target === walletModal) {
+                    walletModal.classList.add('hidden');
+                }
+            });
+
+            function connectWithWallet(walletType) {
+                if (walletType === 'worldapp') {
+                    connectWorldApp();
+                } else {
+                    connectMetaMask();
+                }
+            }
+
+            async function connectWorldApp() {
+                try {
+                    if (typeof window.WorldApp !== 'undefined') {
+                        const result = await window.WorldApp.connect();
+                        if (result.success) {
+                            isConnected = true;
+                            updateWalletUI(result.address);
+                            showNotification('Connected to World App successfully!', 'success');
+                        }
+                    } else {
+                        window.location.href = 'https://worldcoin.org/mini-app?app_id=app_cc2463e69dbce149c2073d4ca593af75';
+                    }
+                } catch (error) {
+                    console.error('World App connection failed:', error);
+                    showNotification('Failed to connect to World App', 'error');
+                }
+            }
+
+            async function connectMetaMask() {
+                try {
+                    if (typeof window.ethereum !== 'undefined') {
+                        const accounts = await window.ethereum.request({
+                            method: 'eth_requestAccounts'
+                        });
+                        
+                        if (accounts.length > 0) {
+                            isConnected = true;
+                            updateWalletUI(accounts[0]);
+                            showNotification('Connected to MetaMask successfully!', 'success');
+                        }
+                    } else {
+                        showNotification('MetaMask not found. Please install MetaMask.', 'error');
+                    }
+                } catch (error) {
+                    console.error('MetaMask connection failed:', error);
+                    showNotification('Failed to connect to MetaMask', 'error');
+                }
+            }
+
+            function updateWalletUI(address) {
+                connectWalletBtn.innerHTML = `
+                    <i data-lucide="wallet" class="w-5 h-5"></i>
+                    <span>${address.slice(0, 6)}...${address.slice(-4)}</span>
+                `;
+                connectWalletBtn.className = 'bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-3 rounded-lg font-bold hover:from-green-600 hover:to-emerald-600 transition-all flex items-center space-x-2 shadow-lg shadow-green-500/50 text-white';
+                
+                walletModal.classList.add('hidden');
+            }
+
+            function disconnectWallet() {
+                isConnected = false;
+                connectWalletBtn.innerHTML = `
+                    <i data-lucide="wallet" class="w-5 h-5"></i>
+                    <span>Connect Wallet</span>
+                `;
+                connectWalletBtn.className = 'okx-style-button px-6 py-3 rounded-lg font-bold transition-all flex items-center space-x-2 text-white';
+                showNotification('Wallet disconnected successfully!', 'info');
+            }
+
+            function showNotification(message, type = 'info') {
+                const notification = document.createElement('div');
+                const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+                notification.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full transition-transform duration-300`;
+                notification.textContent = message;
+                
+                document.body.appendChild(notification);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(0)';
+                }, 100);
+                
+                setTimeout(() => {
+                    notification.style.transform = 'translateX(100%)';
+                    setTimeout(() => {
+                        document.body.removeChild(notification);
+                    }, 300);
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
